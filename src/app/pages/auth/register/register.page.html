@@ -1,0 +1,110 @@
+<ion-content>
+  <div class="body">
+    <div class="container">
+        <img src="../../../../assets/images/logo_polizaqui.jpeg" alt="PolizaAqui Logo">
+  
+        <h1> {{ title }} </h1>
+  
+        <form [formGroup]="formRegister" (ngSubmit)="Submit()">
+          <div *ngIf="nameControl.invalid && (nameControl.dirty || nameControl.touched)" class="error-message">
+            <div *ngIf="nameControl.errors?.['required']">El campo es obligatorio*</div>
+            <div *ngIf="nameControl.errors?.['pattern']">El nombre solo debe contener letras*</div>
+          </div>
+            <ion-input type="text" class="input-field" placeholder="   Nombre" 
+            formControlName="nombre" appDirectiveInputMask 
+            ></ion-input>
+  
+            <div *ngIf="apellidoControl.invalid && (apellidoControl.dirty || apellidoControl.touched)" class="error-message">
+              <div *ngIf="apellidoControl.errors?.['required']">El campo es obligatorio*</div>
+              <div *ngIf="apellidoControl.errors?.['pattern']">El Apéllido solo debe contener letras*</div>
+            </div>
+            <ion-input type="text" class="input-field" placeholder="   Apellido" appDirectiveInputMask
+            formControlName="apellido"
+            ></ion-input>
+  
+            <div *ngIf="emailControl.invalid && (emailControl.dirty || emailControl.touched)" class="error-message">
+              <div *ngIf="emailControl.errors?.['required']">El campo es obligatorio*</div>
+            </div>
+
+            <ion-input type="email" class="input-field no-select" placeholder="   Correo electrónico" 
+            oncopy="return false" 
+            oncut="return false" 
+            onpaste="return false"
+            formControlName="email"
+            [ngClass]="{'input-error': correoNoCoincide, 'input-success': correoCoincide}"
+            ></ion-input>
+
+            <ion-input 
+            type="email" 
+            class="input-field" 
+            placeholder="   Verificar correo" 
+            (input)="verificarCoincidencia($event)"
+            [ngClass]="{'input-error': correoNoCoincide, 'input-success': correoCoincide}" />
+  
+            <div *ngIf="telefonoControl.invalid && (telefonoControl.dirty || telefonoControl.touched)" class="error-message">
+              <div *ngIf="telefonoControl.errors?.['required']">El campo es obligatorio*</div>
+              <div *ngIf="telefonoControl.errors?.['pattern']">El campo es Invalido</div>
+            </div>
+            <ion-input type="text" class="input-field" placeholder="   Número Telefonico" 
+            formControlName="telefono" appDirectivePhoneMask inputmode="numeric" maxlength="12"
+            ></ion-input>
+            <div *ngIf="passwordControl.invalid && (passwordControl.dirty || passwordControl.touched)" class="error-message">
+              <div *ngIf="passwordControl.errors?.['required']">El campo es obligatorio*</div>
+              <div *ngIf="passwordControl.errors?.['minlength']">
+                La contraseña debe tener al menos 6 caracteres*
+              </div>
+            </div>
+            <div class="input-container">
+              <ion-input 
+                [type]="passwordFieldType" 
+                class="input-field" 
+                placeholder="   Contraseña" 
+                formControlName="password">
+              </ion-input>
+              <ion-icon 
+                [name]="passwordIcon" 
+                (click)="togglePasswordVisibility()" 
+                class="eye-icon" 
+                slot="end">
+              </ion-icon>
+            </div>
+      
+            <div class="checkbox-container">
+                <input type="checkbox" required="" >
+                <label>Acepto los <a href="term-policy-dev">términos y condiciones</a></label>
+            </div>
+  
+            @if(showLoading){
+              <div class="spinner">
+                <app-spinner />
+              </div>
+            }  
+  
+            <button type="submit" class="button">Registrarse</button>
+  
+            <div class="divider">registrarse con</div>
+  
+        <div class="social-icons">
+          <div class="icon-circle">
+              <a (click)="loginWithGoogle()">
+                  <i class="fab fa-google"></i>
+              </a>
+          </div>
+          <div>
+              <a (click)="loginWithFacebook()">
+                  <i class="fab fa-facebook-square"></i>
+              </a>
+          </div>
+      </div>
+        </form>
+  
+        <div class="link-information">
+            ¿Ya eres miembro? <strong (click)="routingNavigate()">Iniciar sesión</strong>
+        </div>
+    </div>
+    <footer>
+      <p>&copy; 2024 PolizAqui. Todos los derechos reservados. <a href="term-policy-dev">Términos y Condiciones</a></p>
+  </footer>
+  
+  </div>
+</ion-content>

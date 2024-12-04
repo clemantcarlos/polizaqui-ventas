@@ -1,0 +1,32 @@
+<ion-content>
+  <div class="body">
+    <div class="container">
+      <img src="../../../../assets/images/logo_polizaqui.jpeg" alt="PolizaAqui Logo">
+      <h1>{{ title }}</h1>
+      <form [formGroup]="formGenerate" (ngSubmit)="Submit()">
+        
+        <div class="input-container">
+          <ion-input [type]="passwordFieldType" class="input-field" placeholder="   Nueva Contraseña" formControlName="password"></ion-input>
+          <ion-icon [name]="passwordIcon" (click)="togglePasswordVisibility()" class="eye-icon" slot="end"></ion-icon>
+        </div>      
+        
+        <div class="input-container">
+          <ion-input [type]="passwordFieldType" class="input-field" placeholder="   Confirmar Contraseña" ></ion-input>
+          <ion-icon [name]="passwordIcon" (click)="togglePasswordVisibility()" class="eye-icon" slot="end"></ion-icon>
+        </div>   
+        
+        @if(showLoading){
+          <div class="spinner">
+            <app-spinner />
+          </div>
+        }  
+
+        <button type="submit" class="button">Actualizar</button>
+      
+      </form>
+    </div>
+    <footer>
+      <p>&copy; 2024 PolizAqui. Todos los derechos reservados. <a href="term-policy-dev">Términos y Condiciones</a></p>
+    </footer>
+  </div>
+</ion-content>

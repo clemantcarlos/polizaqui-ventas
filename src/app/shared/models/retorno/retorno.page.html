@@ -1,0 +1,43 @@
+<ion-content [translate]="true">
+<div class="body">
+    <div class="container">
+        <img src="../../../../assets/images/logo_polizaqui.jpeg" alt="PolizAqui Logo">
+        <h1>Mis Pólizas</h1>
+
+        <!-- Ejemplo de Póliza RCV -->
+        <div class="policy" *ngFor="let item of dataPoliza">
+            <h3>Póliza N° {{item.numero_poliza}}</h3>
+            <p><strong>Aseguradora:</strong> {{item.aseguradora}}</p>
+            <p><strong>Plan:</strong> {{item.plan}}</p>
+            <p><strong>Vigencia:</strong> {{item.fecha_emision | date: 'dd/MM/yyyy'}} -{{item.fecha_expiracion | date: 'dd/MM/yyyy'}} </p>
+            <p><strong>Titular:</strong> {{item.titular}} {{item.titular_apellido}}</p>
+            <p><strong>Monto:</strong> {{item.monto}} $</p>
+            <p><strong>Status:</strong> <span class="status">{{item.estado_poliza}}</span></p>
+            <button class="button" (click)="getPaymentData(item)">
+                {{ item.estado_poliza === 'PAGADO' ? 'Compartir' : 'Pagar Ahora' }}
+              </button>     
+            </div>
+
+        <!-- Ejemplo de Póliza Funeraria -->
+        <!-- <div class="policy">
+            <h3>Póliza N° 54321</h3>
+            <p><strong>Aseguradora:</strong> Seguros Caracas</p>
+            <p><strong>Plan:</strong> Seguro Funerario</p>
+            <p><strong>Vigencia:</strong> 15/03/2024 - 14/03/2025</p>
+            <p><strong>Titular:</strong> María López (V-98.765.432)</p>
+            <p><strong>Status:</strong> <span class="status">Pagado</span></p>
+            <button class="button">Descargar Póliza</button>
+        </div> -->
+      
+    </div>
+<div class="footer-div">
+    <footer>
+        <p>&copy; 2024 PolizAqui. Todos los derechos reservados. <a href="term-policy-dev">Términos y Condiciones</a></p>
+    </footer>
+</div>
+    
+</div>
+
+</ion-content>
+<app-compartir [modalCompartir]="modalCompartir" [item]="item" (closeModal)="closeModal()"></app-compartir>
+

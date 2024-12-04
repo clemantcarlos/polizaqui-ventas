@@ -1,0 +1,23 @@
+<div class="modal-overlay" *ngIf="isVisible">
+  <div class="modal-content">
+    <button class="close-btn" (click)="close()">&times;</button>
+    <h2>Ingrese el código OTP</h2>
+    <p>Ingrese el codigo obtenido a través del correo o vía SMS</p>
+    <div class="otp-inputs">
+      <input type="text" maxlength="1" inputmode="numeric" [(ngModel)]="otp[0]" (input)="moveFocus($event, 'otp2')" (keydown)="handleBackspace($event, 'otp1')" id="otp1" />
+      <input type="text" maxlength="1" inputmode="numeric" [(ngModel)]="otp[1]" (input)="moveFocus($event, 'otp3')" (keydown)="handleBackspace($event, 'otp2')" id="otp2" />
+      <input type="text" maxlength="1" inputmode="numeric" [(ngModel)]="otp[2]" (input)="moveFocus($event, 'otp4')" (keydown)="handleBackspace($event, 'otp3')" id="otp3" />
+      <input type="text" maxlength="1" inputmode="numeric" [(ngModel)]="otp[3]" (input)="moveFocus($event, 'otp5')" (keydown)="handleBackspace($event, 'otp4')" id="otp4" />
+      <input type="text" maxlength="1" inputmode="numeric" [(ngModel)]="otp[4]" (input)="moveFocus($event, 'otp6')" (keydown)="handleBackspace($event, 'otp5')" id="otp5" />
+      <input type="text" maxlength="1" inputmode="numeric" [(ngModel)]="otp[5]" (input)="moveFocus($event, 'otp7')" (keydown)="handleBackspace($event, 'otp6')" id="otp6" />
+      <input type="text" maxlength="1" inputmode="numeric" [(ngModel)]="otp[6]" (input)="moveFocus($event, 'otp8')" (keydown)="handleBackspace($event, 'otp7')" id="otp7" />
+      <input type="text" maxlength="1" inputmode="numeric" [(ngModel)]="otp[7]" (keydown)="handleBackspace($event, 'otp8')" id="otp8" />
+    </div>
+    
+    @if(showLoading){
+      <app-spinner />
+    }
+    
+    <button [ngClass]="{'submit-btn-active': isOtpComplete()}"  [disabled]="!isOtpComplete()" class="submit-btn" (click)="Submit()">Confirmar</button>
+  </div>
+</div>

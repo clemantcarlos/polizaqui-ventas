@@ -1,0 +1,257 @@
+ion-content{
+    --background:#f7f8fc;
+  }
+  .body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f7f8fc;
+    color: #424242;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .container {
+    width: 100%;
+    max-width: 400px;
+    padding: 20px;
+    background-color: #FFFFFF;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    margin-top: 50px;
+  }
+  .container img {
+    max-width: 50%;
+    height: auto;
+    margin-bottom: 20px;
+  }
+  
+  .progress-message {
+    font-size: 14px; /* Texto reducido */
+    color: #EB018A;
+    margin-top: 15px;
+    display: none;
+  }
+    h1 {
+      font-family: 'Chau Philomene One', sans-serif;
+      font-size: 20px;
+      color: #333;
+      margin: 0 0 20px;
+    }
+  p.instructions {
+    font-size: 16px;
+    color: #878787;
+    margin: 0 0 20px;
+  }
+  .camera {
+    width: 100%;
+    height: 250px;
+    background-color: #B7B7B7;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    position: relative;
+    overflow: hidden;
+  }
+  .camera:after {
+    color: white;
+    font-size: 18px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+  }
+  .button-container {
+    display: flex;
+    justify-content: space-between;
+  }
+  .video-container {
+    position: relative;
+    width: 100%;
+    max-width: 500px;
+    height: 400px; /* Ajusta según sea necesario */
+    margin: 20px auto;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    z-index: 1001;
+  }
+  
+  video {
+    width: 100%; /* Cambiado a 100% para evitar el cuadro gris */
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+    z-index: 1001;
+  }
+  
+  .zoom-controls {
+    z-index: 1000;
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: space-between;
+    width: 100px; /* Ajusta el ancho según sea necesario */
+  }
+  
+  .zoom-controls button {
+    z-index: 1000;
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  .scanner-line {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: #00ff00;
+    animation: scan 3s infinite;
+  }
+  
+  @keyframes scan {
+    0% {
+      top: 0;
+    }
+    50% {
+      top: 100%;
+    }
+    100% {
+      top: 0;
+    }
+  }
+  
+  .disabled-image {
+    pointer-events: none; /* Deshabilita la interacción del usuario, como clics */
+  }
+  .Image-container {
+    padding: 10px;
+    margin-top: 20px;
+    width: 100%;
+    max-width: 800px; /* Controla el tamaño máximo de la imagen */
+    height: auto; /* Asegura que la imagen mantenga sus proporciones */
+    display: block; /* Asegura que la imagen se comporte como un bloque */
+    margin-left: auto;
+    margin-right: auto;
+    border: 2px solid #ccc; /* Agrega un borde gris claro alrededor de la imagen */
+    border-radius: 10px; /* Bordes redondeados */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra para hacer la imagen más atractiva */
+  }
+  
+  .file-input-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+    width: 100%;
+  }
+  
+  #file-upload {
+    display: none;
+  }
+  
+  #file-label {
+    background-color: #9e9e9e;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 10px;
+  }
+  
+  #file-label:hover{
+    background-color: #EB018A;
+  }
+  
+  #file-name {
+    margin-top: 5px;
+    font-size: 14px;
+    color: #6c757d;
+  }
+  
+  .button {
+    width: 48%;
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    margin:  0 3px;
+  }
+  .button.cancel {
+    background-color: #B7B7B7;
+    color: white;
+  }
+  .button.cancel:hover {
+    background-color: #A0A0A0;
+    box-shadow: 0 0 15px rgba(160, 160, 160, 0.4);
+  }
+  .button.accept {
+    background-color: #EB018A;
+    color: white;
+  }
+  .button.accept:hover {
+    background-color: #D60079;
+    box-shadow: 0 0 15px rgba(214, 0, 121, 0.4);
+  }
+  footer {
+    font-size: 12px;
+    color: #8e8e8e;
+    text-align: center;
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+  }
+  
+  .file-upload {
+    display: none;
+    margin-top: 20px;
+  }
+  
+  .spinner{
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    display: flex;
+    margin-bottom: 10px;
+  }
+  
+  footer a {
+    color: #424242;
+    text-decoration: none;
+  }
+  
+  footer a:hover {
+    text-decoration: underline;
+  }
+  
+  .progress-message {
+    font-size: 14px; /* Texto reducido */
+    color: #EB018A;
+    margin-top: 15px;
+    display: none;
+  }
+  
+  .button.accept.grey-button {
+    background-color: #B7B7B7; /* Gris */
+    color: white;
+  }
+  
+  .button.accept.pink-button {
+    background-color: #EB018A; /* Rosado */
+    color: white;
+  }
+  

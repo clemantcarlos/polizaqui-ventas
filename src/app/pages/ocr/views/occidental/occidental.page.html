@@ -1,0 +1,50 @@
+
+<div class="body">
+  <div class="container">
+    <img src="../../../../assets/images/logo_polizaqui.jpeg" alt="PolizaAqui Logo">
+    <h1>Documentos requeridos</h1>
+
+
+    <div class="document-row">
+      <span class="document-label">
+        <span class="check-icon" [ngStyle]="{ 'display': isLicenseScanned ? 'inline-block' : 'none' }">✔</span>
+        Licencia de conducir
+      </span>
+      <div class="button-group" *ngIf="!isLicenseScanned">
+        <button class="button"  (click)="scanDocument('licencia')">Escanear</button>
+        <button class="button"  (click)="scanAdjuntar('licencia')">Adjuntar</button>
+      </div>
+    </div>
+
+    <div class="document-row">
+      <span class="document-label">
+        <span class="check-icon" [ngStyle]="{ 'display': isRegistrationScanned ? 'inline-block' : 'none' }">✔</span>
+        Carnet de circulación
+      </span>
+      <div class="button-group" *ngIf="!isRegistrationScanned">
+        <button class="button"  (click)="scanDocument('carnet')">Escanear</button>
+        <button class="button"  (click)="scanAdjuntar('carnet')">Adjuntar</button>
+      </div>
+    </div>
+
+
+    <div class="document-row">
+      <span class="document-label">
+        <span class="check-icon" [ngStyle]="{ 'display': isInsuranceScanned ? 'inline-block' : 'none' }">✔</span>
+        Cédula de identidad
+      </span>
+      <div class="button-group" *ngIf="!isInsuranceScanned">
+        <button class="button" (click)="scanDocument('cedula')">Escanear</button>
+        <button class="button" (click)="scanAdjuntar('cedula')">Adjuntar</button>
+      </div>
+    </div>
+
+
+    <button class="submit-button" [ngClass]="{'active': !isSubmitDisabled}" [disabled]="isSubmitDisabled" (click)="submitDocuments()">Enviar documentos</button>
+  </div>
+
+  <footer>
+    <p>&copy; 2024 PolizAqui. Todos los derechos reservados. <a href="term-policy-dev">Términos y Condiciones</a></p>
+  </footer>
+</div>
+

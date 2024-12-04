@@ -1,0 +1,27 @@
+<ion-fab vertical="bottom" horizontal="end" slot="fixed">
+  <ion-fab-button (click)="toggleChat()">
+    <ion-icon name="chatbubble-ellipses-outline"></ion-icon>
+  </ion-fab-button>
+</ion-fab>
+
+<div class="chat-box" *ngIf="isChatOpen">
+  <div class="toolbar">
+    <div class="center-content">
+      <ion-icon slot="start" name="trash" class="trash" (click)="clearChat()"></ion-icon>
+      <h2 class="toolbar-title">Eliminar chat</h2>
+    </div>
+  </div>
+
+  <div class="message-container">
+    <div *ngFor="let response of chatMessages" class="message">
+      {{ response }}
+    </div>
+  </div>
+
+  <div class="input-container">
+    <input type="text" [(ngModel)]="userQuestion" placeholder="Escribe tu pregunta aquí" />
+    <button (click)="handleUserQuestion()">
+      <ion-icon name="send"></ion-icon>
+    </button>
+  </div>
+</div>

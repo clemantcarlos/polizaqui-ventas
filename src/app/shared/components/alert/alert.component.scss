@@ -1,0 +1,78 @@
+/* Modal Background */
+.modal {
+    display: none; /* Oculta el modal por defecto */
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.5); /* Fondo semi-transparente */
+  }
+
+  h2{
+    font-family: 'Chau Philomene One', sans-serif;
+    font-size: 20px;
+    color: #EB018A;
+    margin-bottom: 15px;
+    text-align: center;
+  }
+
+  p{
+    color: #000000;
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+  }
+  
+  /* Modal Content */
+  .modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Ancho del modal */
+    max-width: 500px; /* Máximo ancho del modal */
+    border-radius: 8px;
+  }
+  
+  /* Close Button */
+  .close-button {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+  
+  .close-button:hover,
+  .close-button:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  
+  .button{
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+  /* Button Style */
+  button {
+    background-color: #9f9f9f; /* Color de fondo del botón */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #616161; /* Color de fondo del botón al pasar el ratón */
+  }
+  

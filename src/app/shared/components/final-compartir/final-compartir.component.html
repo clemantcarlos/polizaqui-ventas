@@ -1,0 +1,27 @@
+<div class="modal-overlay" *ngIf="modalFinal">
+  <div class="modal-content">
+    <button class="close-btn" (click)="closeModalCompatir()">&times;</button>
+    <div class="icon-group">
+      <ion-icon name="share-social" class="shared"></ion-icon>
+    </div>
+    <h1>Compartir</h1>
+
+    <div class="button-group">
+      <!-- Botón de descargar -->
+      <button class="custom-button" (click)="downloadPolicy()">
+        <ion-icon name="arrow-down" class="icon"></ion-icon>Descargar
+      </button>
+
+      <!-- Botón de email -->
+      <button class="custom-button" (click)="shareByEmail()">
+        <ion-icon name="mail" class="icon"></ion-icon>Email
+      </button>
+
+      <!-- Botón de Whatsapp -->
+      <button class="custom-button" (click)="shareByWhatsapp()">
+        <ion-icon name="logo-whatsapp" class="icon"></ion-icon>Whatsapp
+      </button>
+    </div>
+    
+  </div>
+</div>

@@ -1,0 +1,31 @@
+
+<div class="body">
+  <div class="container">
+    <!-- <div class="icon-success">&#10004;</div> -->
+    <img src="../../../../assets/images/logo_polizaqui.jpeg" alt="PolizaAqui Logo">
+
+    <h1>¡Felicidades!</h1>
+    <p class="confirmation-message" >
+      Tu compra ha sido exitosa. El número de tu póliza es <strong>{{numerodepoliza}}</strong>. 
+      Puedes descargar tu póliza en formato PDF a continuación.
+    </p>
+    @if(showLoading){
+      <app-spinner  />
+    }
+    <button 
+    type="button" 
+    class="button" 
+    [disabled]="isDisabled" 
+    [ngStyle]="{'background-color': isDisabled ? '#9f9fa0' : '#D60079'}"
+    (click)="openModal()">
+    Compartir
+  </button>  
+    <!-- <button type="button" class="button" (click)="routingNavigate()">Finalizar</button> -->
+
+  </div>
+  <footer>
+    <p>&copy; 2024 PolizAqui. Todos los derechos reservados. <a href="term-policy-dev">Términos y Condiciones</a></p>
+  </footer>
+  <app-final-compartir [modalFinal]="modalFinal" (closeModal)="closeModal()" [item]="item" />
+ 
+

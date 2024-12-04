@@ -1,0 +1,242 @@
+ion-content {
+    --background: #f7f8fc;
+    --display: flex;
+    --justify-content: center;
+    --align-items: center;
+    --height: 100vh;
+    --overflow: hidden;
+    --padding: 0;
+}
+
+.body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f7f8fc;
+    color: #424242;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.image-container{
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.image-container img{
+    width: 80px;
+}
+
+
+.container {
+    background-color: #FFFFFF;
+    border-radius: 15px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 300px;
+    width: 100%;
+    box-sizing: border-box;
+}
+.container img {
+    max-width: 35%;
+    height: auto;
+    margin-bottom: 15px;
+}
+
+h1 {
+    font-family: 'Chau Philomene One', sans-serif;
+    font-size: 17px;
+    margin-top: 0;
+    color: #424242;
+}
+
+.coverages {
+    background-color: #ecf0f1;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    text-align: left;
+}
+
+.coverages h2 {
+    font-size: 17px;
+    margin-bottom: 10px;
+    color: #666265;
+    text-align: center;
+}
+
+.coverage-item {
+    margin: 8px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.coverage-item .label {
+    font-size: 14px;
+    color: #2c3e50;
+}
+
+.coverage-item .amount {
+    font-size: 17px;
+    font-weight: bold;
+    color: #2980b9;
+}
+
+.cost {
+    background-color: #f8f9fa;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.cost h2 {
+    font-size: 16px;
+    margin-bottom: 8px;
+    color: #2c3e50;
+}
+
+.cost .amount {
+    font-size: 18px;
+    font-weight: bold;
+    color: #2980b9;
+}
+
+.policies {
+    text-align: left;
+    margin-bottom: 15px;
+    background-color: #f8f9fa;
+    border-radius: 10px;
+}
+
+.policies h3 {
+    font-size: 18px;
+    margin-bottom: 8px;
+    color: #2c3e50;
+}
+
+.policies ul {
+    list-style-type: none;
+    font-size: 14px;
+    color: #666666;
+    text-align: left;
+    padding-left: 0; /* Elimina el padding predeterminado del ul */
+    margin-left: 0;  /* Elimina el margen predeterminado del ul */
+}
+
+.policies ul li {
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    text-align: left;
+    padding-left: 0; /* Asegura que no haya padding en los li */
+    margin-left: 0;  /* Asegura que no haya margen en los li */
+}
+
+
+.policies ul li::before {
+    content: "✔";
+    color: #27ae60;
+    margin-right: 5px;
+    text-align: left;
+}
+
+.button {
+    width: 100%;
+    border: none;
+    border-radius: 5px;
+    background-color: #2980b9;
+    color: white;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.button:hover {
+    background-color: #1abc9c;
+    box-shadow: 0 0 20px 1px rgba(26, 188, 156, 0.8);
+}
+
+footer {
+    font-size: 13px;
+    color: #B7B7B7;
+    text-align: center;
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 40px;
+}
+
+footer a {
+    color: #424242;
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+@media only screen and (max-width: 600px) {
+    /* Ajusta el tamaño de la fuente y los márgenes en móviles */
+    .body {
+        font-size: 12px;
+    }
+
+    .container {
+        max-width: 95%;
+        padding: 15px;
+    }
+
+  
+
+    .container img {
+        max-width: 35%;
+    }
+
+    h1 {
+        font-size: 15px;
+    }
+    h2{
+        font-size: 15px;
+    }
+
+        
+    .image-container img{
+    max-width: 35%;
+    }
+
+    
+    .policies h3 {
+        font-size: 11px;
+    }
+
+    .coverages h2{
+        font-size: 14px;
+    }
+
+    .coverage-item .label,
+    .coverage-item,
+    .cost {
+        font-size: 11px;
+    }
+
+    .policies ul li{
+        display: block;
+        font-size: 10px;
+        text-align: left;
+    }
+
+    .button {
+        font-size: 10px;
+        padding: 8px;
+    }
+
+    .cost,.amount{
+        font-size: 11px;
+    }
+
+  }

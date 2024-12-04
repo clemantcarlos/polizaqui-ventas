@@ -1,0 +1,26 @@
+    ion-app{
+        background:#f7f8fc;
+    }
+
+    .tabs-wrapper {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        position: relative;
+      }
+      
+      .tabs-content {
+        flex: 1;
+        overflow-y: auto;
+        position: relative;
+        z-index: 1; /* Asegura que el contenido esté por encima de los tabs */
+      }
+      
+      .tabs {
+        background-color: #fdfdfd;
+        border-top: 1px solid #ccc;
+        padding: 10px 0;
+        position: sticky;
+        bottom: 0;
+        z-index:0;
+      }

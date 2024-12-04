@@ -1,0 +1,117 @@
+.chat-box {
+  position: absolute;
+  bottom: 80px; /* Ajusta para que quede justo encima del botón */
+  right: 20px;
+  width: 90%;
+  max-width: 300px;
+  background-color: #ffffff; /* Fondo blanco para mayor claridad */
+  border-radius: 10px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  padding: 15px;
+  z-index: 100; /* Asegúrate de que esté sobre otros elementos */
+  animation: slide-in 0.3s ease; /* Animación para el cuadro de chat */
+}
+
+@keyframes slide-in {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+ion-fab-button {
+  --background: #Eb06B3;
+  --color: #f1f1f1;
+}
+
+.message-container {
+  max-height: 250px;
+  overflow-y: auto;
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+
+.message {
+  background-color: #f1f1f1;
+  padding: 10px;
+  margin: 5px 0;
+  border-radius: 5px;
+  color: #757575;
+  white-space: pre-line;
+}
+
+
+.trash {
+  color: red;
+  font-size: 19px;
+}
+
+.toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center; /* Centrar verticalmente */
+}
+
+.center-content {
+  display: flex;
+  align-items: center; /* Centrar verticalmente el icono y el texto */
+}
+
+.toolbar-title {
+  font-weight: bold; /* Hacer el título más prominente */
+  font-size: 18px;
+  color: #333; /* Color del título */
+}
+
+.input-container {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Espacio entre el input y el botón */
+}
+
+input[type="text"] {
+  flex: 1; /* Para que el input ocupe todo el espacio disponible */
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 14px;
+  background-color: #f9f9f9;
+  color: #333;
+}
+
+input[type="text"]::placeholder {
+  color: #aaa;
+}
+
+input[type="text"]:focus {
+  outline: none;
+  border-color: #Eb06B3; /* Cambia el borde cuando el input está enfocado */
+  box-shadow: 0 0 5px rgba(235, 6, 179, 0.5); /* Resalta el input */
+}
+
+button {
+  padding: 10px 20px;
+  background-color: #Eb06B3; /* Color del botón */
+  border: none;
+  border-radius: 5px;
+  color: #fff; /* Texto en blanco */
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #c0059c; /* Color al pasar el cursor */
+}
+
+button:active {
+  background-color: #a00483; /* Color al hacer clic */
+}
+
+button:focus {
+  outline: none;
+}

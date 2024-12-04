@@ -1,0 +1,72 @@
+<ion-content>
+  <div class="body">
+    <div class="container">
+      <img src="../../../../assets/images/logo_polizaqui.jpeg" alt="PolizaAqui Logo">
+  
+      <h1>Registrar Pago</h1>
+      
+      <div class="summary">
+          <h2>Resumen del Pedido</h2>
+          <p>Plan seleccionado: <span>{{Descripcion_occidental}}</span></p>
+          <p>Total a pagar: <span>{{precio}}bs</span></p>
+      </div>
+  
+      <div class="payment-method">
+          <h2>Seleccione el método de pago:</h2>
+          <div class="form-group">
+              <select id="payment-type" (change)="togglePaymentFields($event)">
+                <option value="" disabled selected>Seleccione Método</option>
+                  <option value="telefono">Pago Móvil</option>
+                  <option value="cuenta">Cuenta Bancaria</option>
+              </select>
+          </div>
+          <form [formGroup]="formSyPago" (ngSubmit)="submit()">
+          <div class="form-group">
+              <select id="bank-select" formControlName="bank_code">
+                <option value="" disabled selected>Seleccione Banco</option>
+                @for(item of this.bank; track $index){
+                  <option [value]="item.Code">{{item.Name}}</option>
+                }              
+              </select>
+              
+          </div>
+          <div class="form-group">
+            </div>
+              <div class="row">
+                  <select id="id-type" formControlName="typeid">
+                    <option value="" disabled selected>-</option>
+                      <option value="V">V</option>
+                      <option value="E">E</option>
+                      <option value="G">G</option>
+                  </select>
+                  <input type="text" id="id-number" inputmode="numeric" formControlName="numid" placeholder="Número de Cédula" readonly />
+              </div>
+  
+          <div class="form-group" *ngIf="metodoPago === 'telefono'">
+            <input type="text" id="phone-number"  inputmode="numeric" maxlength="12" formControlName="instrument" placeholder="Número de teléfono" />
+          </div>
+  
+          <div class="form-group" *ngIf="metodoPago === 'cuenta'">
+            <label for="cuenta">Número de Cuenta</label>
+            <input type="text" id="cuenta" inputmode="numeric" formControlName="instrument" minlength="20" maxlength="20" placeholder="Número de cuenta">
+          </div>
+                
+      <div class="spinner">
+        @if(showLoading){
+          <app-spinner />
+        }
+      </div>
+  
+      <button class="button" type="submit" id="open-modal">Realizar Pago</button>
+      
+    </form>
+  
+      </div>
+  </div>
+  <footer>
+    <p>&copy; 2024 PolizAqui. Todos los derechos reservados. <a href="term-policy-dev">Términos y Condiciones</a></p>
+  </footer>
+  </div>
+  
+  </ion-content>
+  <app-otp-occidental [isVisible]="isModalVisible" [dataOtp]="dataOtp" (closeModal)="closeModal()"></app-otp-occidental>

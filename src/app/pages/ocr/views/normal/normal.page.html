@@ -1,0 +1,23 @@
+<div class="body">
+  <div class="container">
+    <img src="../../../../../assets/images/logo_polizaqui.jpeg" alt="PolizAqui Logo">
+    <h1>Documentos Requeridos</h1>
+    <div class="document-row">
+      <span class="document-label">
+        <span id="check-cedula" class="check-icon" [ngStyle]="{ 'display': isInsuranceScanned ? 'inline-block' : 'none' }">✔</span>
+        Cédula de identidad
+      </span>
+      <div class="button-group" id="group-cedula" *ngIf="!isInsuranceScanned">
+        <button id="scan-cedula" class="button" (click)="scanDocument('cedula')">Escanear</button>
+        <button id="attach-cedula" class="button" (click)="scanAdjuntar('cedula')">Adjuntar</button>
+      </div>
+    </div>
+    <button id="submit-button" class="submit-button" [ngClass]="{'active': !isSubmitDisabled}"  [disabled]="isSubmitDisabled" (click)="submitDocuments()">
+      Enviar documentos
+    </button>
+  </div>
+    <footer>
+      <p>&copy; 2024 PolizAqui. Todos los derechos reservados. <a href="term-policy-dev">Términos y Condiciones</a></p>
+    </footer>
+  </div>
+

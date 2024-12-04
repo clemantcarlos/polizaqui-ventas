@@ -1,0 +1,413 @@
+ion-content{
+    --background:#f7f8fc;
+}
+.body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f7f8fc;
+    color: #424242;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.container {
+    width: 90%;
+    max-width: 350px;
+    background-color: #FFFFFF;
+    border-radius: 15px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    text-align: center;
+}
+
+.container img {
+    max-width: 50%;
+    height: auto;
+    margin-bottom: 15px;
+}
+
+h2, summary{
+    font-family: 'Chau Philomene One', sans-serif;
+    font-size: 20px;
+    margin-top: 0;
+    margin-bottom: 20px;
+    color: #424242;
+    text-align: center;
+}
+
+.form-section {
+    margin-bottom: 15px;
+}
+
+.row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    gap: 10px;
+    position: relative;
+}
+
+.input-field {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0;
+    border: 1px solid #B7B7B7;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 14px;
+    color: #424242;
+    background-color: #f9f9f9;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.input-small {
+    width: 45%;
+    padding: 10px;
+    margin: 8px 0;
+    border: 1px solid #B7B7B7;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 14px;
+    color: #424242;
+    background-color: #f9f9f9;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.accordion {
+    background-color: #f9f9f9;
+    color: #424242;
+    cursor: pointer;
+    padding: 10px;
+    width: 100%;
+    text-align: left;
+    border: 1px solid #B7B7B7;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+
+.accordion.active:after {
+    content: "\2212";
+}
+
+.checkbox-label1{
+  font-size: 13px;
+  margin-left: 5px;
+}
+
+.autocomplete-list {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    border: 1px solid #ccc;
+    border-top: none;
+    max-height: 200px;
+    overflow-y: auto;
+    background: white;
+    z-index: 1000;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-align: left;
+  }
+
+  .autocomplete-list li {
+    padding: 10px;
+    cursor: pointer;
+  }
+  
+  .autocomplete-list li:hover {
+    background-color: #f0f0f0;
+  }
+
+.panel {
+    padding: 0 10px;
+    background-color: white;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s ease-out;
+    border-top: none;
+}
+
+.panel.show {
+    max-height: 400px;
+}
+
+.button-group {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+}
+
+.button {
+    width: 48%;
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+    text-align: center;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.button-return {
+    background-color: #B7B7B7;
+    color: white;
+}
+
+.button-return:hover {
+    background-color: #A0A0A0;
+}
+
+.button-buy {
+    background-color: #2980b9;
+    color: white;
+    font-size: 16px;
+    padding: 15px;
+    box-shadow: 0 0 15px 1px rgba(41, 128, 185, 0.6);
+}
+
+.button-buy:hover {
+    background-color: #1abc9c;
+    box-shadow: 0 0 20px 1px rgba(26, 188, 156, 0.8);
+}
+
+
+.ng-invalid.ng-touched {
+    border-color: red;
+  }
+
+  .input-error {
+    border: 2px solid red;
+  }
+  .input-success {
+    border: 2px solid rgb(57, 225, 57);
+  }
+  
+  .no-select {
+    user-select: none; /* Deshabilita la selección de texto */
+}
+
+
+footer {
+  font-size: 10px;
+  color: #B7B7B7;
+  text-align: center;
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 25px;
+}
+
+footer a {
+  color: #424242;
+  text-decoration: none;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}
+
+.invalid-field {
+    border: 1px solid red;
+    background-color: #fdd;
+  }
+  
+
+  .error-label {
+    display: block; /* Hace que el label ocupe una línea completa */
+    color: red;
+    font-size: 0.9em;
+    text-align: center;
+    margin-bottom: 5px; /* Espacio entre el label y el campo de entrada */
+  }
+
+  .informacion-details {
+    background-color: #f9f9f9;
+  }
+  
+  h4 {
+    font-weight: bold;
+    font-size: 13px;
+    color: #7b7878;
+    text-align: left;
+  }
+  
+    p {
+    font-size: 10px;
+    color: #888;
+    text-align: left;
+  }
+  .toggle-container {
+    display: flex;
+    justify-content: flex-start; /* Alineado a la izquierda */
+    margin-top: 20px;
+  }
+
+  .toggle-switch {
+    position: relative;
+    width: 60px; /* Más pequeño */
+    height: 30px;
+    border-radius: 15px;
+    background-color: #ee8b8b; /* Rojo por defecto (No) */
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+
+  .toggle-switch input {
+    display: none;
+  }
+
+  .slider {
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 24px; /* Más pequeño */
+    height: 24px;
+    border-radius: 50%;
+    background-color: #fff;
+    transition: all 0.3s;
+  }
+
+  /* Cambiar posición del slider cuando se activa */
+  .toggle-switch input:checked + .slider {
+    transform: translateX(30px);
+  }
+
+  /* Cambiar el color de fondo del toggle completo cuando está activado */
+  .toggle-switch input:checked + .slider {
+    background-color: #fff; /* Color del slider sigue siendo blanco */
+  }
+
+  /* Cambiar color del contenedor del toggle cuando está activado (Sí) */
+  .toggle-switch input:checked {
+    background-color: #007bff; /* Azul cuando está activado */
+  }
+
+  /* Texto dentro del toggle */
+  .toggle-switch input:checked + .slider::before {
+    content: 'Sí';
+    color: #fff;
+    font-size: 14px;
+    position: absolute;
+    top: 2px;
+    bottom: 5px;
+    left: -30px; /* Mueve el texto "Sí" */
+  }
+
+  .toggle-switch .slider::before {
+    content: 'No';
+    color: #fff;
+    font-size: 14px;
+    position: absolute;
+    top: 2px;
+    bottom: 5px;
+    left: 35px; /* Mueve el texto "No" */
+  }
+
+  /* Color del toggle desactivado (No) */
+  .toggle-switch {
+    background-color: #918f8f; /* Rojo cuando está desactivado */
+  }
+
+  .checkbox-container {
+    display: flex;
+    flex-direction: column;
+    margin: 20px;
+  }
+  
+  .checkbox-label {
+    display: flex;
+    align-items: flex-start; /* Alinea el contenido al inicio verticalmente */
+    cursor: pointer;
+    font-size: 12px;
+    margin-bottom: 10px;
+    user-select: none; /* Evitar selección de texto accidental */
+  }
+  
+  .checkbox-label input {
+    display: none;
+  }
+  
+  .custom-checkbox {
+    width: 60px;
+    height: 20px;
+    border: 2px solid #007bff;
+    border-radius: 4px;
+    position: relative;
+    display: block;
+    margin-right: 10px;
+    transition: background-color 0.3s, border-color 0.3s;
+  }
+  
+  .custom-checkbox::after {
+    content: '';
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    border: solid #fff;
+    border-width: 0 2px 2px 0;
+    top: 4px;
+    left: 5px;
+    transform: rotate(45deg);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .styled-textarea {
+    width: 100%;
+    padding: 10px;
+    border: 2px solid #007bff;
+    border-radius: 8px;
+    background: #f1f1f1;
+    font-size: 14px;
+    resize: none;
+    height: 90px;
+    transition: border-color 0.3s, box-shadow 0.3s;
+  }
+  
+  .styled-textarea:focus {
+    outline: none;
+    border-color: #0056b3;
+    box-shadow: 0 0 8px rgba(0, 123, 255, 0.5);
+  }
+  
+  
+  .checkbox-label input:checked + .custom-checkbox {
+    background-color: #007bff;
+    border-color: #007bff;
+  }
+  
+  .checkbox-label input:checked + .custom-checkbox::after {
+    opacity: 1;
+  }
+  
+  .checkbox-label:hover .custom-checkbox {
+    border-color: #0056b3;
+  }
+  
+  .checkbox-text {
+    font-size: 10px;
+    line-height: 1.4;
+    color: #918f8f;
+    text-align: left; /* Alinear el texto a la izquierda */
+  }
+  
+  .checkbox-text a {
+    color: #1a1a1b;
+    text-decoration: underline;
+  }
+  
+  .checkbox-text a:hover {
+    color: #0056b3;
+  }
+  
+
+  
+  
+  

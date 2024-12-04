@@ -1,0 +1,52 @@
+<div class="body">
+  <div class="container">
+      <img src="../../../../assets/images/logo_polizaqui.jpeg" alt="PolizaAqui Logo">
+      <h1> {{ title }} </h1>
+
+      <form [formGroup]="formLogin" (ngSubmit)="submit()">
+
+          <div *ngIf="emailControl.invalid && (emailControl.dirty || emailControl.touched)" class="error-message">
+              <div *ngIf="emailControl.errors?.['required']">El campo es obligatorio*</div>
+              <div *ngIf="emailControl.errors?.['email']">Correo inválido</div>
+            </div>
+          <ion-input type="email" class="input-field" placeholder="   Correo electrónico"
+          formControlName="email"
+          ></ion-input>
+
+          <div *ngIf="passwordControl.invalid && (passwordControl.dirty || passwordControl.touched)" class="error-message">
+              <div *ngIf="passwordControl.errors?.['required']">El campo es obligatorio*</div>
+            </div>
+            <div class="input-container">
+              <ion-input [type]="passwordFieldType" class="input-field" placeholder="   Contraseña" formControlName="password"></ion-input>
+              <ion-icon [name]="passwordIcon" (click)="togglePasswordVisibility()" class="eye-icon" slot="end"></ion-icon>
+            </div>
+
+          @if(showLoading){
+            <div class="spinner">
+              <app-spinner />
+            </div>
+          }
+          <img src="image" alt="">
+        <button type="submit" class="button" color="transparent">Iniciar sesión</button>
+        <a class="link" (click)="RoutingNavigate()"> {{ subtitle }} </a>
+     
+   <div class="divider">{{ information }}</div>
+      <div class="social-icons">
+        <div class="icon-circle">
+          <a (click)="loginWithGoogle()">
+            <i class="fab fa-google"></i></a>
+        </div>
+        <div>
+          <a (click)="loginWithFacebook()">
+            <i class="fab fa-facebook-square"></i></a>
+        </div>
+      </div> 
+    </form>
+  </div>
+  <div class="link-information">
+      <p>No tienes una cuenta <strong (click)="navigateRouting()">Registrarse</strong></p>
+  </div>
+  <footer>
+      <p>&copy; 2024 PolizAqui. Todos los derechos reservados. <a href="term-policy-dev">Términos y Condiciones</a></p>
+  </footer>
+</div>

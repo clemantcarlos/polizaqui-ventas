@@ -1,0 +1,105 @@
+.body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f7f8fc;
+    color: #424242;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: auto;
+}
+
+.container {
+    width: 100%;
+    max-width: 380px;
+    background-color: #FFFFFF;
+    border-radius: 15px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    text-align: center;
+    height: 100vh;
+}
+
+.container img {
+    max-width: 150px;
+    height: auto;
+    margin-bottom: 20px;
+}
+
+h1 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 24px;
+    margin-bottom: 15px;
+    color: #2c3e50;
+}
+
+p, ul {
+    text-align: left;
+    margin-bottom: 20px;
+    font-size: 16px;
+    color: #666666;
+    line-height: 1.5;
+}
+
+ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+ul li::before {
+    content: "✔";
+    color: #EB018A; /* Checkmarks rosados */
+    margin-right: 10px;
+}
+
+/* Números circulares */
+p strong {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    background-color: #EB018A;
+    color: white;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 30px;
+    font-size: 16px;
+    margin-right: 10px;
+}
+
+/* Resaltado en rosado para PolizAqui */
+.highlight {
+    background-color: #ffe6f2;
+    padding: 2px 5px;
+    border-radius: 5px;
+}
+
+footer {
+    font-size: 12px;
+    color: #95a5a6;
+    text-align: center;
+    margin-top: 20px;
+}
+
+footer a {
+    color: #95a5a6;
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 400px) {
+    .container {
+        padding: 15px;
+    }
+
+    h1 {
+        font-size: 22px;
+    }
+
+    p, ul {
+        font-size: 14px;
+    }
+}

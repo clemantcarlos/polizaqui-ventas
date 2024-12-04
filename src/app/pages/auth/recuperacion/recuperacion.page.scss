@@ -1,0 +1,133 @@
+ion-content{
+    --background:#fff;
+}
+.body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f7f8fc;
+    color: #424242;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.container {
+    width: 90%;
+    max-width: 400px;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    background-color: #FFFFFF;
+    text-align: center;
+}
+
+.container img {
+    max-width: 50%;
+    height: auto;
+    margin-bottom: 20px;
+}
+
+h1 {
+    font-family: 'Chau Philomene One', sans-serif;
+    font-size: 24px;
+    margin-top: 0;
+    margin-bottom: 20px;
+    color: #424242;
+}
+
+.input-container {
+    position: relative;
+    width: 100%;
+  }
+
+.input-field {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border: 1px solid #B7B7B7;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 14px;
+    color: #424242;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    background-color: #f9f9f9;
+}
+
+.input-field::placeholder {
+    color: rgba(66, 66, 66, 0.7);
+}
+
+.input-field:hover {
+    border-color: #808080;
+}
+
+.input-field:focus {
+    border-color: #EB018A;
+    box-shadow: 0 0 5px rgba(235, 1, 138, 0.5);
+    outline: none;
+}
+
+.eye-icon {
+    font-size: 20px;
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #808080;
+    z-index: 1000;
+  }
+
+.button {
+    width: 100%;
+    padding: 15px;
+    margin: 15px 0;
+    border: none;
+    border-radius: 5px;
+    background-color: #EB018A;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    box-shadow: 0 0 10px 1px rgba(235, 1, 138, 0.4);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.button:hover {
+    background-color: #D60079;
+    box-shadow: 0 0 15px 1px rgba(214, 0, 121, 0.6);
+}
+
+.message {
+    font-size: 14px;
+    color: #424242;
+    margin-top: 20px;
+}
+
+footer {
+    font-size: 12px;
+    color: #979797;
+    text-align: center;
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+.spinner{
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    display: flex;
+    margin-bottom: 10px;
+}
+
+
+footer a {
+    color: #424242;
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}

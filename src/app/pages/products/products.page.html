@@ -1,0 +1,80 @@
+<ion-content [fullscreen]="true" Scroll-Y="true">
+    <div class="body">
+        <div class="container">
+            <img src="../../../assets/images/logo_polizaqui.jpeg" alt="PolizaAqui Logo">
+            <h1>Productos de seguros</h1>
+            <div class="products">
+                <div class="product-row">
+                    <div class="flip-card flip-card-separator">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front">
+                                <img src="https://img.icons8.com/ios-filled/50/808080/scooter.png" alt="RCV Moto Icon">
+                                <h2>R.C.V moto</h2>
+                                <p>Responsabilidad civil moto</p>
+                                <img src="../../../assets/images/logo_la_mundial-Photoroom.png" alt="La Mundial Logo" class="logo-mundial">
+                            </div>
+                            <div class="flip-card-back">
+                                <p>Cobertura básica según la ley</p>
+                                <button name="Plan_Moto" id="4" (click)="navigateRouting('4','Plan_Moto')">Comprar</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flip-card">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front">
+                                <img src="https://img.icons8.com/ios-filled/50/808080/car--v1.png" alt="RCV Vehículo Icon">
+                                <h2>R.C.V vehículo</h2>
+                                <p>Responsabilidad civil vehículo</p>
+                                <img src="../../../assets/images/logo_la_mundial-Photoroom.png" alt="La Mundial Logo" class="logo-mundial">
+                            </div>
+                            <div class="flip-card-back">
+                                <p>Cobertura básica según la ley</p>
+                                <button name="Plan_Auto" id="0" (click)="navigateRouting('0','Plan_Auto')">Comprar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-row">
+                    <div class="flip-card" style="width: 100%;">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front">
+                                <img src="https://img.icons8.com/ios-filled/50/808080/heart-with-pulse--v1.png" alt="Funerario Icon">
+                                <h2>Funerario</h2>
+                                <p>Seguro funerario</p>
+                                <img src="../../../assets/images/logo_la_mundial-Photoroom.png" alt="La Mundial Logo" class="logo-mundial">
+                            </div>
+                            <div class="flip-card-back">
+                                <p>Cobertura completa para servicios funerarios</p>
+                                <button id="1" name="Gastos Funerarios" (click)="navigateRouting('1','Gastos Funerarios')" >Comprar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-row">
+                    <div class="flip-card" style="width: 100%;">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front">
+                                <img src="https://img.icons8.com/ios-filled/50/808080/stethoscope--v1.png" alt="3 en 1 Icon">
+                                <h2>3 en 1</h2>
+                                <p> Vida, Funerario y Accidentes personales </p>
+                                <img src="../../../assets/images/logo_la_mundial-Photoroom.png" alt="La Mundial Logo" class="logo-mundial">
+                            </div>
+                            <div class="flip-card-back">
+                                <p>Vida, funerario y accidentes personales</p>
+                                <button id="2" name="Producto 3en1" (click)="navigateRouting('2','Producto 3en1')">Comprar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+          
+            </div>
+      
+        </div>
+        <footer>
+            <p>&copy; 2024 PolizAqui. Todos los derechos reservados. <a href="term-policy-dev">Términos y Condiciones</a></p>
+        </footer>
+    </div>
+
+   </ion-content>
+
+   

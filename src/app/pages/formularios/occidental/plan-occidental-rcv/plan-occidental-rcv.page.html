@@ -1,0 +1,260 @@
+<ion-content>
+  <div class="body">
+    <div class="container">
+      <img src="../../../../assets/images/logo_polizaqui.jpeg" alt="PolizaAqui Logo">
+      <form [formGroup]="formPlanRCV" (ngSubmit)="Submit()">
+  
+        <div class="form-section">
+          <h2>Información del Tomador</h2>
+          <div class="row">
+            <select class="input-field" formControlName="tipoid" placeholder="Tipo" interface="action-sheet" >
+              <option value="" disabled selected>Tipo</option>
+              <option value="V">V</option>
+              <option value="E">E</option>
+              <option value="G">G</option>
+              <option value="J">J</option>
+            </select>
+            <input type="text" formControlName="numid" class="input-field" inputmode="numeric" placeholder="Cedula" [readonly]="isNumIdReadonly">
+          </div>
+  
+
+            <input type="text" formControlName="nomter" class="input-field" placeholder="Nombre" >
+            <input type="text" formControlName="apeter" class="input-field" placeholder="Apellido" >
+
+  
+      
+          <div class="row">
+            <select class="input-field" formControlName="sexo">
+              <option value="" disabled selected>Sexo</option>
+              <option value="M">Masculino</option>
+              <option value="F">Femenino</option>
+            </select>
+    
+            <input type="text" class="input-field" placeholder="Nacimiento" 
+            placeholder="F Nacimiento" formControlName="fecnac"
+            onfocus="this.type='date'; this.placeholder='F Nacimiento'"
+            >    
+          </div>
+  
+          <div class="row">
+            <input type="text"
+            formControlName="codestado"
+            class="input-field"
+            placeholder="Estado"
+            (input)="Estado($event)"
+            [value]="getDescripcionEstado()" 
+            (blur)="validateEstado()"
+            >
+            <ul class="autocomplete-list">
+              @for (item of filteredEstado; track $index) {
+                <li (click)="selectEstado(item)">
+                  {{item.DESCESTADO}}
+                </li>
+              }
+            </ul>
+
+            <input type="text"
+            class="input-field"
+            formControlName="codciudad"
+            placeholder="Ciudad"
+            (input)="Ciudad($event)"
+            [value]="getDescriptionCiudad()"
+            (blur)="validateCiudad()"
+            [disabled]="!ciudad || ciudad.length === 0"
+            > 
+            <ul class="autocomplete-list">
+              @for (item of filteredCiudad; track $index) {
+                <li (click)="selectCiudad(item)">
+                  {{item.DESCCIUDAD}}
+                </li>
+              }
+            </ul>
+          </div>
+
+          <div class="row">
+            <input type="text"
+            class="input-field"
+            formControlName="codmunicipio"
+            placeholder="Municipio"
+            (input)="Municipio($event)"
+            [value]="getDescriptionMunicipio()"
+            (blur)="validateMunicipio()"
+            [disabled]="!municipio || municipio.length === 0"
+            >
+            <ul class="autocomplete-list">
+              @for (item of filteredMunicipio; track $index) {
+                <li (click)="SelectMunicipio(item)">
+                  {{item.DESCMUNICIPIO}}
+                </li>
+              }
+            </ul>
+
+            <input type="text"
+            class="input-field"
+            formControlName="codparroquia"
+            placeholder="Parroquia"
+            (input)="Parroquia($event)"
+            [value]="getDescriptionParroquia()"
+            (blur)="validateParroquia()"
+            [disabled]="!parroquia || parroquia.length === 0"
+            >
+            <ul class="autocomplete-list">
+              @for (item of filteredParroquia; track $index) {
+                <li (click)="selectParroquia(item)">
+                  {{item.DESCPARROQUIA}}
+                </li>
+              }
+            </ul>
+          </div>
+
+          
+            <input type="text" class="input-field" formControlName="direccion" placeholder="Dirección" >
+            
+            
+            <label *ngIf="this.formPlanRCV.get('telofi')?.invalid && (this.formPlanRCV.get('telofi')?.dirty || this.formPlanRCV.get('telofi')?.touched)" class="error-label">
+              Formato inválido
+            </label>
+          
+           
+            <input type="tel" formControlName="telofi" class="input-field" placeholder="Teléfono" maxlength="12" appDirectivePhoneMask inputmode="numeric" 
+            [ngClass]="{'invalid-field': this.formPlanRCV.get('telofi')?.invalid && (this.formPlanRCV.get('telofi')?.dirty || this.formPlanRCV.get('telofi')?.touched)}"
+            >            
+     
+
+            <input 
+            type="email" 
+            class="input-field no-select" 
+            placeholder="Correo" 
+            formControlName="email" 
+            oncopy="return false" 
+            oncut="return false" 
+            onpaste="return false"
+            [ngClass]="{'input-error': correoNoCoincide, 'input-success': correoCoincide}">
+            
+          <input 
+            type="email" 
+            class="input-field" 
+            placeholder="Verificar correo" 
+            (input)="verificarCoincidencia($event)"
+            [ngClass]="{'input-error': correoNoCoincide, 'input-success': correoCoincide}">
+            
+
+          <details>
+            <summary>Datos del Vehículo</summary>
+            <div class="form-section">
+
+              <div class="row">
+                <input type="text" formControlName="anmoveh" 
+                placeholder="Año"
+                class="input-field"
+                inputmode="numeric"
+                (input)="Ano($event)"
+                [value]="getAnoDescription()"
+                (blur)="validateAno()"
+                >
+                <ul class="autocomplete-list">
+                  @for(item of this.filteredAno;track $index){
+                    <li (click)="SelectAno(item)">
+                      {{item.qano}}
+                    </li>
+                  }
+                </ul>
+
+                <input type="text"
+                formControlName="marca"
+                class="input-field"
+                placeholder="Marca"
+                (input)="Marca($event)"
+                [value]="getDescriptionMarca()"
+                (blur)="validateMarca()"
+                [disabled]="!marcas || marcas.length === 0"
+                >
+                <ul class="autocomplete-list">
+                  @for (item of filteredMarca; track $index) {
+                    <li (click)="selectMarca(item)">
+                      {{item.DESCMARCA}}
+                    </li>
+                  }
+                </ul>
+              </div>
+
+              <div class="row">
+                <input type="text"
+                formControlName="modelo"
+                class="input-field"
+                placeholder="Modelo"
+                (input)="Modelo($event)"
+                [value]="getDescriptionModelo()"
+                (blur)="validateModelo()"
+                [disabled]="!modelo || modelo.length === 0"
+                >
+                <ul class="autocomplete-list">
+                  @for (item of filteredModelo; track $index) {
+                    <li (click)="selectModelo(item)">
+                      {{item.DESCMODELO}}
+                    </li>
+                  }
+                </ul>
+
+                <input type="text"
+                formControlName="version"
+                placeholder="Version"
+                class="input-field"
+                (input)="Version($event)"
+                [value]="getDescriptionVersion()"
+                (blur)="validateVersion()"
+                [disabled]="!version || version.length === 0"
+                >
+                <ul class="autocomplete-list">
+                  @for (item of filteredVersion; track $index) {
+                    <li (click)="SelectVersion(item)">
+                      {{item.DESCVERSION}}
+                    </li>
+                  }
+                </ul>
+              </div>
+
+              <div class="row">
+                <input type="text" formControlName="placa" placeholder="Placa" 
+                maxlength="7"
+               
+                minlength="7"
+                class="input-field">
+                <input type="text" formControlName="color" placeholder="Color" class="input-field">
+              </div>
+              <input type="text" formControlName="serialCarroceria" placeholder="Serial de Carroceria" class="input-field">
+              <input type="text" class="input-field" formControlName="kilometraje" inputmode="numeric" placeholder="kilometraje">
+            </div>
+  
+          </details>
+
+          <div class="checkbox-container">
+            <label class="checkbox-label">
+              <input type="checkbox" id="checkbox1">
+              <span class="custom-checkbox"></span>
+              <span class="checkbox-text">
+                Acepto los <a href="https://docs.polizaqui.com/aceptacion-terminos.pdf" target="_blank">términos y condiciones</a>
+              </span>
+            </label>
+
+          </div>
+          
+
+          <div *ngIf="showLoading" class="spinner">
+            <app-spinner></app-spinner>
+          </div>
+  
+          <div class="button-group">
+            <button type="button"  class="button button-return" (click)="routingNavigate()">Volver</button>
+            <button type="submit" class="button button-buy">Comprar</button>
+          </div>
+        </div>
+        </form>
+   
+      </div>
+      <footer>
+        <p>&copy; 2024 PolizAqui. Todos los derechos reservados. <a href="term-policy-dev">Términos y Condiciones</a></p>
+      </footer>
+    </div>
+  
+</ion-content>

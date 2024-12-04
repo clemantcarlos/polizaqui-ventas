@@ -1,0 +1,39 @@
+
+<div class="body">
+  <div class="container">
+    <img src="../../../../assets/images/logo_polizaqui.jpeg" alt="PolizaAqui Logo">
+    <h1>Adjuntar documento</h1>
+    <p class="instructions">Por favor, selecciona una imagen del documento y se mostrará a continuación.</p>
+    
+  
+      <img [src]="imageUrl" *ngIf="imageUrl" [ngClass]="{ 'disabled-image': isDisabled }" alt="Imagen seleccionada"  class="Image-container"/>
+      <iframe *ngIf="pdfUrl && isPdf" [src]="pdfUrl" width="100%" height="500px" class="pdf-container"></iframe>
+
+
+  
+      @if(showLoading){
+        <div class="spinner">
+          <app-spinner />
+        </div>
+      }  
+
+      <div class="button-container">
+      <button class="button cancel" (click)="RoutingNavigate()">Cancelar</button>
+      <input 
+      [disabled]="messageInformation"
+      type="file" accept="image/*,application/pdf" (change)="handleFileInput($event)" id="file-upload">     
+       <label
+
+       [ngClass]="{
+        'processing': messageInformation,
+        'error': messageInformationError
+      }"
+       for="file-upload" id="file-label">Adjuntar</label>
+      </div>
+      <p class="progress-message" [ngStyle]="{ 'display': messageInformation ? 'inline-block' : 'none' }">Procesando documento, por favor espera...</p>
+      <p class="error-message" [ngStyle]="{ 'display': messageInformationError ? 'inline-block' : 'none' }">Ocurrió un error al adjuntar el documento. Inténtalo de nuevo.</p>
+  </div>
+  <footer>
+    <p>&copy; 2024 PolizAqui. Todos los derechos reservados. <a href="term-policy-dev">Términos y Condiciones</a></p>
+  </footer>
+</div>
