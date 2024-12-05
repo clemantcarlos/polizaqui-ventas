@@ -1,42 +1,66 @@
 <ion-content>
   <div class="body">
     <div class="container">
-      <img src="../../../../assets/images/logo_polizaqui.jpeg" alt="PolizaAqui Logo">
+      <img
+        src="../../../../assets/images/logo_polizaqui.jpeg"
+        alt="PolizaAqui Logo"
+      />
       <form [formGroup]="formPlanSalud" (ngSubmit)="Submit()">
         <div class="form-section">
           <div class="checked-data1">
-            <ion-checkbox class="custom-checkbox1"
+            <ion-checkbox
+              class="custom-checkbox1"
               formControlName="sameAsTomador"
               (ionChange)="onCheckboxChange($event)"
             ></ion-checkbox>
-            <label for="sameInsured" class="checkbox-label1">Marque si el tomador es también el titular?</label>
+            <label for="sameInsured" class="checkbox-label1"
+              >Marque si el tomador es también el titular?</label
+            >
           </div>
         </div>
-  
+
         <div class="form-section">
           <h2>Información del tomador</h2>
           <div class="row">
-            <select class="input-field" placeholder="Cédula" interface="action-sheet" formControlName="cedula_tomador">
+            <select
+              class="input-field"
+              placeholder="Cédula"
+              interface="action-sheet"
+              formControlName="cedula_tomador"
+            >
               <option value="" disabled selected>Cédula</option>
               <option value="V">V</option>
               <option value="E">E</option>
               <option value="G">G</option>
               <option value="J">J</option>
             </select>
-            <input type="text" class="input-field" placeholder="RIF" formControlName="rif_tomador">
+            <input
+              type="text"
+              class="input-field"
+              placeholder="RIF"
+              formControlName="rif_tomador"
+            />
           </div>
-  
 
-            <input type="text" class="input-field" placeholder="Nombre" formControlName="nombre_tomador">
-            <input type="text" class="input-field" placeholder="Apellido" formControlName="apellido_tomador">
+          <input
+            type="text"
+            class="input-field"
+            placeholder="Nombre"
+            formControlName="nombre_tomador"
+          />
+          <input
+            type="text"
+            class="input-field"
+            placeholder="Apellido"
+            formControlName="apellido_tomador"
+          />
 
-  
           <select class="input-field" formControlName="sexo_tomador">
             <option value="" disabled selected>Sexo</option>
             <option value="M">Masculino</option>
             <option value="F">Femenino</option>
           </select>
-  
+
           <div class="row">
             <select formControlName="estado_civil_tomador" class="input-field">
               <option value="" disabled selected>Estado civil</option>
@@ -45,224 +69,300 @@
               <option value="V">Viudo/a</option>
               <option value="D">Divorciado/a</option>
             </select>
-            <input type="text" 
-            class="input-field"  
-            formControlName="fnac_tomador"
-            placeholder="F Nacimiento" 
-            onfocus="this.type='date'; this.placeholder='F Nacimiento'"
-       >
-     
+            <input
+              type="text"
+              class="input-field"
+              formControlName="fnac_tomador"
+              placeholder="F Nacimiento"
+              onfocus="this.type='date'; this.placeholder='F Nacimiento'"
+            />
           </div>
-  
 
           <div class="row">
-            <input type="text" formControlName="estado_tomador" class="input-field" placeholder="Estado"
-            (input)="EstadoT($event)"
-            [value]="DescripcionT()"
+            <input
+              type="text"
+              formControlName="estado_tomador"
+              class="input-field"
+              placeholder="Estado"
+              (input)="EstadoT($event)"
+              [value]="DescripcionT()"
             />
             <ul class="autocomplete-list">
               @for(item of this.filteredEstados; track $index){
-                <li (click)="selectEstadoT(item)">
-                  {{item.xdescripcion_l}}
-                </li>
+              <li (click)="selectEstadoT(item)">{{item.xdescripcion_l}}</li>
               }
             </ul>
-            
-            <input type="text" formControlName="ciudad_tomador" class="input-field" placeholder="Ciudad"
-            (input)="onCiudadT($event)"
-            [value]="getCiudadDescripcion()"
-            >
+
+            <input
+              type="text"
+              formControlName="ciudad_tomador"
+              class="input-field"
+              placeholder="Ciudad"
+              (input)="onCiudadT($event)"
+              [value]="getCiudadDescripcion()"
+            />
             @if(this.filteredCiudades.length > 0){
-              <ul class="autocomplete-list">
-                @for(item of this.filteredCiudades;track $index){
-                  <li (click)="selectCiudadT(item)">
-                    {{item.xdescripcion_l}}
-                  </li>
-                }
-              </ul>
+            <ul class="autocomplete-list">
+              @for(item of this.filteredCiudades;track $index){
+              <li (click)="selectCiudadT(item)">{{item.xdescripcion_l}}</li>
+              }
+            </ul>
             }
           </div>
 
-          
-            <input type="text" class="input-field" placeholder="Dirección" formControlName="direccion_tomador">
+          <input
+            type="text"
+            class="input-field"
+            placeholder="Dirección"
+            formControlName="direccion_tomador"
+          />
 
-            <label *ngIf="this.formPlanSalud.get('telefono_tomador')?.invalid && (this.formPlanSalud.get('telefono_tomador')?.dirty || this.formPlanSalud.get('telefono_tomador')?.touched)" class="error-label">
-              Formato inválido
-            </label>
-          
-            <input type="tel" 
+          <label
+            *ngIf="this.formPlanSalud.get('telefono_tomador')?.invalid && (this.formPlanSalud.get('telefono_tomador')?.dirty || this.formPlanSalud.get('telefono_tomador')?.touched)"
+            class="error-label"
+          >
+            Formato inválido
+          </label>
+
+          <input
+            type="tel"
             [ngClass]="{'invalid-field': this.formPlanSalud.get('telefono_tomador')?.invalid && (this.formPlanSalud.get('telefono_tomador')?.dirty || this.formPlanSalud.get('telefono_tomador')?.touched)}"
-            class="input-field" placeholder="Teléfono" maxlength="12" appDirectivePhoneMask inputmode="numeric" formControlName="telefono_tomador">
+            class="input-field"
+            placeholder="Teléfono"
+            maxlength="12"
+            appDirectivePhoneMask
+            inputmode="numeric"
+            formControlName="telefono_tomador"
+          />
 
-            
-            <input 
-            type="email" 
-            class="input-field no-select" 
-            placeholder="Correo" 
-            formControlName="correo_tomador" 
-            oncopy="return false" 
-            oncut="return false" 
+          <input
+            type="email"
+            class="input-field no-select"
+            placeholder="Correo"
+            formControlName="correo_tomador"
+            oncopy="return false"
+            oncut="return false"
             onpaste="return false"
-            [ngClass]="{'input-error': correoNoCoincide, 'input-success': correoCoincide}">
-            
-          <input 
-            type="email" 
-            class="input-field" 
-            placeholder="Verificar correo" 
-            (input)="verificarCoincidencia($event)"
-            [ngClass]="{'input-error': correoNoCoincide, 'input-success': correoCoincide}">
-            
-       
-            <div class="informacion-details">
-              <p>¿Es usted o algún familiar de su circulo intimo una persona expuesta politicamente?</p>
-              <div class="toggle-container">
-                <label class="toggle-switch">
-                  <input type="checkbox" formControlName="dec_persona_politica">
-                  <span class="slider"></span>
-                </label>
-              </div>
- 
+            [ngClass]="{'input-error': correoNoCoincide, 'input-success': correoCoincide}"
+          />
 
-              <!-- <div class="checkbox-container">
- 
-                <label class="checkbox-label">
-                  <input type="checkbox" id="checkbox2" (change)="toggleTextarea()">
-                  <span class="custom-checkbox"></span>
-                  <span class="checkbox-text">
-                    Declaro que no conozco, ni he sido diagnosticado con alguna enfermedad o condición grave de salud que ponga en riesgo mi integridad física o mi vida. Por lo que afirmo que me encuentro en buen Estado de Salud.
-                  </span>
-                </label>
-              
-                <textarea *ngIf="!isSecondCheckboxChecked" class="styled-textarea" placeholder="Indica su patología.."></textarea>
-              </div>
-               -->
-              
+          <input
+            type="email"
+            class="input-field"
+            placeholder="Verificar correo"
+            (input)="verificarCoincidencia($event)"
+            [ngClass]="{'input-error': correoNoCoincide, 'input-success': correoCoincide}"
+          />
+
+          <div class="informacion-details">
+            <p>
+              ¿Es usted o algún familiar de su circulo intimo una persona
+              expuesta politicamente?
+            </p>
+            <div class="toggle-container">
+              <label class="toggle-switch">
+                <input type="checkbox" formControlName="dec_persona_politica" />
+                <span class="slider"></span>
+              </label>
             </div>
-            
-    
-  
-          <details>
-            <summary>Datos del titular</summary>
+          </div>
+
+          <div>
+            <h2>Datos del titular</h2>
             <div class="form-section">
               <div class="row">
-                <select class="input-field" interface="action-sheet" formControlName="cedula_titular" [attr.disabled]="isTitularDisabled ? true : null">
+                <select
+                  class="input-field"
+                  interface="action-sheet"
+                  formControlName="cedula_titular"
+                  [attr.disabled]="isTitularDisabled ? true : null"
+                >
                   <option value="" disabled selected>Cédula</option>
                   <option value="V">V</option>
                   <option value="E">E</option>
                   <option value="G">G</option>
                   <option value="J">J</option>
                 </select>
-                <input type="text" class="input-field" placeholder="RIF" formControlName="rif_titular" [attr.disabled]="isTitularDisabled ? true : null">
+                <input
+                  type="text"
+                  class="input-field"
+                  placeholder="RIF"
+                  formControlName="rif_titular"
+                  [attr.disabled]="isTitularDisabled ? true : null"
+                />
               </div>
-  
-           
-                <input type="text" class="input-field" placeholder="Nombre" formControlName="nombre_titular" [attr.disabled]="isTitularDisabled ? true : null">
-                <input type="text" class="input-field" placeholder="Apellido" formControlName="apellido_titular" [attr.disabled]="isTitularDisabled ? true : null">
-        
-  
-              <select class="input-field" formControlName="sexo_titular" [attr.disabled]="isTitularDisabled ? true : null">
+
+              <input
+                type="text"
+                class="input-field"
+                placeholder="Nombre"
+                formControlName="nombre_titular"
+                [attr.disabled]="isTitularDisabled ? true : null"
+              />
+              <input
+                type="text"
+                class="input-field"
+                placeholder="Apellido"
+                formControlName="apellido_titular"
+                [attr.disabled]="isTitularDisabled ? true : null"
+              />
+
+              <select
+                class="input-field"
+                formControlName="sexo_titular"
+                [attr.disabled]="isTitularDisabled ? true : null"
+              >
                 <option value="" disabled selected>Sexo</option>
                 <option value="M">Masculino</option>
                 <option value="F">Femenino</option>
               </select>
-  
+
               <div class="row">
-                <select formControlName="estado_civil_titular" class="input-field" [attr.disabled]="isTitularDisabled ? true : null">
+                <select
+                  formControlName="estado_civil_titular"
+                  class="input-field"
+                  [attr.disabled]="isTitularDisabled ? true : null"
+                >
                   <option value="" disabled selected>Estado civil</option>
                   <option value="S">Soltero/a</option>
                   <option value="C">Casado/a</option>
                   <option value="V">Viudo/a</option>
                   <option value="D">Divorciado/a</option>
                 </select>
-                <input type="text" 
-                class="input-field" placeholder="Nacimiento" 
-                formControlName="fnac_titular"
-                placeholder="F Nacimiento" 
-            onfocus="this.type='date'; this.placeholder='F Nacimiento'"
-                  [attr.disabled]="isTitularDisabled ? true : null">
+                <input
+                  type="text"
+                  class="input-field"
+                  placeholder="Nacimiento"
+                  formControlName="fnac_titular"
+                  placeholder="F Nacimiento"
+                  onfocus="this.type='date'; this.placeholder='F Nacimiento'"
+                  [attr.disabled]="isTitularDisabled ? true : null"
+                />
               </div>
             </div>
-     
- 
+
             <div class="row">
-              <input type="text" formControlName="estado_titular" class="input-field" placeholder="Estado"
-              (input)="EstadoTI($event)"
-              [value]="DescripcionTI()"
-              [attr.disabled]="isTitularDisabled ? true : null"
+              <input
+                type="text"
+                formControlName="estado_titular"
+                class="input-field"
+                placeholder="Estado"
+                (input)="EstadoTI($event)"
+                [value]="DescripcionTI()"
+                [attr.disabled]="isTitularDisabled ? true : null"
               />
               <ul class="autocomplete-list">
                 @for(item of this.filteredEstados2; track $index){
-                  <li (click)="selectEstadoTI(item)">
-                    {{item.xdescripcion_l}}
-                  </li>
+                <li (click)="selectEstadoTI(item)">{{item.xdescripcion_l}}</li>
                 }
               </ul>
-              
-              <input type="text" formControlName="ciudad_titular" class="input-field" placeholder="Ciudad"
-              (input)="onCiudadTI($event)"
-              [value]="getCiudadDescripcionTI()"
-              [attr.disabled]="isTitularDisabled ? true : null"
-              >
+
+              <input
+                type="text"
+                formControlName="ciudad_titular"
+                class="input-field"
+                placeholder="Ciudad"
+                (input)="onCiudadTI($event)"
+                [value]="getCiudadDescripcionTI()"
+                [attr.disabled]="isTitularDisabled ? true : null"
+              />
               @if(this.filteredCiudades2.length > 0){
-                <ul class="autocomplete-list">
-                  @for(item of this.filteredCiudades2;track $index){
-                    <li (click)="selectCiudadTI(item)">
-                      {{item.xdescripcion_l}}
-                    </li>
-                  }
-                </ul>
+              <ul class="autocomplete-list">
+                @for(item of this.filteredCiudades2;track $index){
+                <li (click)="selectCiudadTI(item)">{{item.xdescripcion_l}}</li>
+                }
+              </ul>
               }
             </div>
-      
-                
-                <input type="text" class="input-field" placeholder="Dirección" formControlName="direccion_titular" [attr.disabled]="isTitularDisabled ? true : null">
 
-                <label *ngIf="this.formPlanSalud.get('telefono_titular')?.invalid && (this.formPlanSalud.get('telefono_titular')?.dirty || this.formPlanSalud.get('telefono_titular')?.touched)" class="error-label">
-                  Formato inválido
-                </label>
+            <input
+              type="text"
+              class="input-field"
+              placeholder="Dirección"
+              formControlName="direccion_titular"
+              [attr.disabled]="isTitularDisabled ? true : null"
+            />
 
-                <input type="tel" class="input-field" placeholder="Teléfono" maxlength="12" appDirectivePhoneMask inputmode="numeric" formControlName="telefono_titular" 
-                [ngClass]="{'invalid-field': this.formPlanSalud.get('telefono_titular')?.invalid && (this.formPlanSalud.get('telefono_titular')?.dirty || this.formPlanSalud.get('telefono_titular')?.touched)}"
-                [attr.disabled]="isTitularDisabled ? true : null">
+            <label
+              *ngIf="this.formPlanSalud.get('telefono_titular')?.invalid && (this.formPlanSalud.get('telefono_titular')?.dirty || this.formPlanSalud.get('telefono_titular')?.touched)"
+              class="error-label"
+            >
+              Formato inválido
+            </label>
 
+            <input
+              type="tel"
+              class="input-field"
+              placeholder="Teléfono"
+              maxlength="12"
+              appDirectivePhoneMask
+              inputmode="numeric"
+              formControlName="telefono_titular"
+              [ngClass]="{'invalid-field': this.formPlanSalud.get('telefono_titular')?.invalid && (this.formPlanSalud.get('telefono_titular')?.dirty || this.formPlanSalud.get('telefono_titular')?.touched)}"
+              [attr.disabled]="isTitularDisabled ? true : null"
+            />
 
-                <input type="email" class="input-field" placeholder="Correo" formControlName="correo_titular" [attr.disabled]="isTitularDisabled ? true : null">
-   
-  
-          </details>
-
-          <div class="informacion-details">
-            <h4>Términos y condiciones </h4>
-
-      <div class="checkbox-container">
-                <label class="checkbox-label">
-                  <input type="checkbox" id="checkbox1"  formControlName="dec_term_y_cod">
-                  <span class="custom-checkbox"></span>
-                  <span class="checkbox-text">
-                    Declaro que acepto todos los mecanismos electrónicos dispuestos por La Mundial de Seguros C.A., para la contratación de la presente póliza.<a href="https://docs.polizaqui.com/terminos-y-condiciones.pdf" target="_blank">Ver términos y condiciones</a>
-                  </span>
-                </label>
-  
-              </div>
-              
-
+            <input
+              type="email"
+              class="input-field"
+              placeholder="Correo"
+              formControlName="correo_titular"
+              [attr.disabled]="isTitularDisabled ? true : null"
+            />
           </div>
 
-          
+          <div class="informacion-details">
+            <h4>Términos y condiciones</h4>
+
+            <div class="checkbox-container">
+              <label class="checkbox-label">
+                <input
+                  type="checkbox"
+                  id="checkbox1"
+                  formControlName="dec_term_y_cod"
+                />
+                <span class="custom-checkbox"></span>
+                <span class="checkbox-text">
+                  Declaro que acepto todos los mecanismos electrónicos
+                  dispuestos por La Mundial de Seguros C.A., para la
+                  contratación de la presente póliza.<a
+                    href="https://docs.polizaqui.com/terminos-y-condiciones.pdf"
+                    target="_blank"
+                    >Ver términos y condiciones</a
+                  >
+                </span>
+              </label>
+            </div>
+          </div>
+
           <div *ngIf="showLoading" class="spinner">
             <app-spinner></app-spinner>
           </div>
-  
+
           <div class="button-group">
-            <button type="button"  class="button button-return" (click)="routingNavigate()">Volver</button>
-            <button type="submit"   [disabled]="!formPlanSalud.get('dec_term_y_cod')?.value ||correoNoCoincide"  class="button button-buy">Comprar</button>
+            <button
+              type="button"
+              class="button button-return"
+              (click)="routingNavigate()"
+            >
+              Volver
+            </button>
+            <button
+              type="submit"
+              [disabled]="!formPlanSalud.get('dec_term_y_cod')?.value ||correoNoCoincide"
+              class="button button-buy"
+            >
+              Siguiente
+            </button>
           </div>
         </div>
-        </form>
-      </div>
-
+      </form>
     </div>
-    <footer>
-      <p>&copy; 2024 PolizAqui. Todos los derechos reservados. <a href="term-policy-dev">Términos y Condiciones</a></p>
-    </footer>
+  </div>
+  <footer>
+    <p>
+      &copy; 2024 PolizAqui. Todos los derechos reservados.
+      <a href="term-policy-dev">Términos y Condiciones</a>
+    </p>
+  </footer>
 </ion-content>

@@ -29,10 +29,10 @@ export class OtpComponent implements OnInit {
   private NotificationService = inject(NotificationService);
   private http = inject( HttpClient)
   showLoading = false;
-  private countBank : string = '01720111531118494549'; 
-  //private countBank : string = '01143600524083976037';
-  private codeBank : string = '0172'
- //private codeBank : string = '0114'
+  // private countBank : string = '01720111531118494549';
+  private countBank : string = '01143600524083976037';
+  // private codeBank : string = '0172'
+ private codeBank : string = '0114'
   private idcout = 1;
   private idtransaction: string = '';
   private opt: any;
@@ -52,16 +52,16 @@ export class OtpComponent implements OnInit {
     this.numero_Poliza = JSON.parse(numero)
     const data : any = localStorage.getItem('id-routing')
     this.route = JSON.parse(data)
-    this.id  = JSON.parse(localStorage.getItem('cnpoliza') || '[]');    
+    this.id  = JSON.parse(localStorage.getItem('cnpoliza') || '[]');
     this.numeroObtenido = JSON.parse(localStorage.getItem('numero') || '[]')
     this.setOtpLength(8);
     this.storaged();
     const numeroPoliza : any = JSON.parse(localStorage.getItem('Correo_Poliza') || '[]');
-   this.numeroPoliza = numeroPoliza.poliza 
+   this.numeroPoliza = numeroPoliza.poliza
     this.statusPoliza = numeroPoliza.numero_poliza
    const paymentRetorno = JSON.parse(localStorage.getItem('paymentRetorno') || '[]')
    this.poliza = paymentRetorno.numero_poliza
-  } 
+  }
 
   setOtpLength(length: number, event?: Event) {
     if (event) {
@@ -114,7 +114,7 @@ export class OtpComponent implements OnInit {
       console.warn('No se encontró ningún dato en localStorage con la clave "auth-session".');
     }
   }
-  
+
 
   handleBackspace(event: any, currentInputId: string) {
     const currentInput = event.target as HTMLInputElement;
@@ -139,10 +139,10 @@ export class OtpComponent implements OnInit {
 
   sumarUnAno(): Date {
     const fechaActual = new Date();
-  
+
     const nuevaFecha = new Date(fechaActual);
     nuevaFecha.setFullYear(fechaActual.getFullYear() + 1);
-  
+
     return nuevaFecha;
   }
 
@@ -155,60 +155,65 @@ export class OtpComponent implements OnInit {
       referencia:this.idtransaction,
       moneda:'BS',
       fecha_cobro:this.getCurrentDate()
-    }    
-    const response = await (await this.mundialService.registerMundialPayment(datos)).toPromise()     
+    }
+    const response = await (await this.mundialService.registerMundialPayment(datos)).toPromise()
   }
 
   public async Submit() {
     this.showLoading = true;
-    const otpCode = this.otp.join('').trim(); 
-    
-    if (otpCode.length !== this.otpLength) {
-      alert(`El código OTP debe tener exactamente ${this.otpLength} dígitos.`);
-      this.showLoading = false;
-      return;
-    }
-  
-    const datos = {
-      "internal_id": this.numeroPoliza || this.poliza,
-      "group_id": this.numeroPoliza || this.poliza,
-      "account": {
-        "bank_code": this.codeBank,
-        "type": "CNTA",
-        "number": this.countBank
-      },
-      "amount": {
-        "amt": this.paymentData.amount.amt,
-        "currency": "VES"
-      },
-      "concept": "Cobro de Poliza",
-      "notification_urls": {
-        "web_hook_endpoint": 'https://syPagoMundial.polizaqui.com/getNotifications'
-      },
-      "receiving_user": {
-        "otp": otpCode,
-        "document_info": {
-          "type": this.paymentData.debitor_document_info.type,
-          "number": this.paymentData.debitor_document_info.number
-        },
-        "account": {
-          "bank_code": this.paymentData.debitor_account.bank_code,
-          "type": this.paymentData.debitor_account.type,
-          "number": this.paymentData.debitor_account.number
-        }
-      }
-    };
-  
-    try {
-      const response = await firstValueFrom(this.sypagoService.verifyCodeOTP(datos));
-      this.idtransaction = response.transaction_id;
-      this.getNortifications();
-    } catch (error) {
-      this.toastMessage('Hubo un error al procesar el OTP, intenta nuevamente', 'danger');
-      this.showLoading = false
-    }
+    // const otpCode = this.otp.join('').trim();
+
+    // if (otpCode.length !== this.otpLength) {
+    //   alert(`El código OTP debe tener exactamente ${this.otpLength} dígitos.`);
+    //   this.showLoading = false;
+    //   return;
+    // }
+
+    // const datos = {
+    //   "internal_id": this.numeroPoliza || this.poliza,
+    //   "group_id": this.numeroPoliza || this.poliza,
+    //   "account": {
+    //     "bank_code": this.codeBank,
+    //     "type": "CNTA",
+    //     "number": this.countBank
+    //   },
+    //   "amount": {
+    //     "amt": this.paymentData.amount.amt,
+    //     "currency": "VES"
+    //   },
+    //   "concept": "Cobro de Poliza",
+    //   "notification_urls": {
+    //     "web_hook_endpoint": 'https://syPagoMundial.polizaqui.com/getNotifications'
+    //   },
+    //   "receiving_user": {
+    //     "otp": otpCode,
+    //     "document_info": {
+    //       "type": this.paymentData.debitor_document_info.type,
+    //       "number": this.paymentData.debitor_document_info.number
+    //     },
+    //     "account": {
+    //       "bank_code": this.paymentData.debitor_account.bank_code,
+    //       "type": this.paymentData.debitor_account.type,
+    //       "number": this.paymentData.debitor_account.number
+    //     }
+    //   }
+    // };
+
+    // try {
+    //   const response = await firstValueFrom(this.sypagoService.verifyCodeOTP(datos));
+    //   this.idtransaction = response.transaction_id;
+    //   this.getNortifications();
+    // } catch (error) {
+    //   this.toastMessage('Hubo un error al procesar el OTP, intenta nuevamente', 'danger');
+    //   this.showLoading = false
+
+    //   console.log(error)
+    // }
+    this.idtransaction= 'asdfasdf'
+    this.getNortifications();
+    this.showLoading = false
   }
-  
+
   isOtpComplete(): boolean {
     return this.otp.length === this.otpLength && this.otp.every(value => value !== '');
   }
@@ -217,11 +222,11 @@ export class OtpComponent implements OnInit {
     const datos = {
       id_transaction: this.idtransaction
     };
-  
+
     // Crear un intervalo para verificar el estado cada 10 segundos
     const interval = setInterval(() => {
       this.sypagoService.getNotification(datos).subscribe(data => {
-        
+
         switch (data.data.status) {
           case "ACCP":
             this.updatePoliza();
@@ -234,10 +239,10 @@ export class OtpComponent implements OnInit {
             setTimeout(() => {
               this.navCtrl.navigateRoot('7f7d9e3d1e7b5f6a9c8b4a9d4c9d2e4a');
             }, 4000);
-  
+
             clearInterval(interval);
             break;
-  
+
           case "RJCT":
             this.toastMessage('Operación rechazada. Por favor, revisa los detalles e inténtalo de nuevo.', 'danger');
             this.registerPayment1();
@@ -245,18 +250,18 @@ export class OtpComponent implements OnInit {
             this.close();
             clearInterval(interval); // Detener el temporizador si la transacción es rechazada
             break;
-  
+
           case "PEND":
             // this.toastMessage('Pago pendiente. Recibirás una notificación una vez completado.', 'warning');
             // this.registerPayment2()
             this.showLoading = true;
             break;
-  
+
           case 'PROC':
             // this.toastMessage('Pago en proceso. Recibirás una notificación una vez completado.', 'warning');
             this.showLoading = true;
             break;
-  
+
           default:
             this.toastMessage('Estado de la operación desconocido. Contacte soporte.', 'danger');
             clearInterval(interval);
@@ -265,7 +270,7 @@ export class OtpComponent implements OnInit {
       });
     }, 10000); // Repetir cada 10 segundos
   }
-  
+
   requestNotification(): void {
     const notificationData = {
       title: '¡Gracias por Preferir PolizAqui! 😁',
@@ -281,7 +286,7 @@ export class OtpComponent implements OnInit {
     }
     const response =  await this.insertDataService.updateStatus(dato);
   }
-  
+
   private async getPolizaCorreo(){
     try {
         const correo = localStorage.getItem('Correo_Poliza');
@@ -306,7 +311,7 @@ export class OtpComponent implements OnInit {
     const seconds = String(today.getSeconds()).padStart(2, '0');
     return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
   }
-  
+
   private async registerPayment() {
     const dataEmpresa = JSON.parse(localStorage.getItem('empresa-aliada') || '')
     const data = {
@@ -325,7 +330,7 @@ export class OtpComponent implements OnInit {
       estado:'PAGADA',
       empresa: dataEmpresa || 'PolizAqui'
     };
-    
+
     try {
       const response = await  this.sypagoService.registerPayment(data);
     } catch (error) {
@@ -350,7 +355,7 @@ export class OtpComponent implements OnInit {
       plan: this.planSend,
       estado:'RECHAZADA'
     };
-    
+
     try {
       const response = await  this.sypagoService.registerPayment(data);
     } catch (error) {

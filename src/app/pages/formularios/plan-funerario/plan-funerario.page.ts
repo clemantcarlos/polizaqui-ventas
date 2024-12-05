@@ -16,7 +16,7 @@ import { environment } from 'src/environments/environment';
 })
 export class PlanFunerarioPage implements OnInit,AfterViewChecked {
 
- 
+
   private navCtrl = inject(NavController);
   private fb = inject(FormBuilder);
   private insertData = inject( InserDataService );
@@ -36,17 +36,17 @@ export class PlanFunerarioPage implements OnInit,AfterViewChecked {
   public filteredCiudades: Ciudad[] =[]
   public filteredCiudades2: Ciudad[] =[]
   private descripcion : string = ''
-  private currentPolizaNumber!: number; 
+  private currentPolizaNumber!: number;
   private numeroObtenido : any;
   private email : any
   verificarCorreoControl: FormControl = new FormControl(''); // Control separado para "verificar correo"
-  correoNoCoincide: boolean = false; // Variable para el error de coincidencia 
+  correoNoCoincide: boolean = false; // Variable para el error de coincidencia
   correoCoincide: boolean = false
   isSecondCheckboxChecked = false;
 
   constructor(
     private changeDftc: ChangeDetectorRef
-  ) { 
+  ) {
     this.generateForm();
     this.formPlanSalud.get('dec_term_y_cod')?.valueChanges.subscribe((value: boolean) => {
       this.formPlanSalud.get('dec_term_y_cod')?.setValue(value ? 1 : 0, { emitEvent: false });
@@ -63,9 +63,9 @@ export class PlanFunerarioPage implements OnInit,AfterViewChecked {
   verificarCoincidencia(event: Event) {
     const inputElement = event.target as HTMLInputElement;
     const correoVerificado = inputElement.value;
-    
+
     const correoTomador = this.formPlanSalud.get('correo_tomador')?.value;
-    
+
     // Verificar si los correos coinciden
     this.correoNoCoincide = correoTomador !== correoVerificado;
     this.correoCoincide = correoTomador === correoVerificado; // Nueva propiedad para el éxito
@@ -93,14 +93,14 @@ export class PlanFunerarioPage implements OnInit,AfterViewChecked {
 
     return this.currentPolizaNumber;
   }
-  
+
   ngAfterViewChecked() {
     this.changeDftc.detectChanges(); // Detecta cambios en la vista si es necesario
   }
 
  /*************DATOS DEL TOMADOR ************/
 
- /*************DATOS DEL TOMADOR ************/ 
+ /*************DATOS DEL TOMADOR ************/
  DescripcionT(): string {
   const estadoNumero = this.formPlanSalud.get('estado_tomador')?.value;
   const estado = this.estados.find(e => e.cestado === estadoNumero);
@@ -128,7 +128,7 @@ selectEstadoT(estado: Estado): void {
   if (inputElement) {
     inputElement.value = estado.xdescripcion_l;
   }
-  
+
   // Filtrar ciudades por el estado seleccionado
   this.filteredCiudades = this.ciudad.filter(ciudad => ciudad.cestado === estado.cestado);
 
@@ -161,7 +161,7 @@ selectCiudadT(ciudad: Ciudad): void {
   this.formPlanSalud.get('ciudad_tomador')?.setValue(ciudad.cciudad);
   this.formPlanSalud.get('ciudad_tomador')?.markAsTouched();
   this.filteredCiudades = [];
-  
+
   const inputElement = document.querySelector('input[formControlName="ciudad_tomador"]') as HTMLInputElement;
   if (inputElement) {
     inputElement.value = ciudad.xdescripcion_l;
@@ -204,7 +204,7 @@ selectEstadoTI(estado: Estado): void {
   if (inputElement) {
     inputElement.value = estado.xdescripcion_l;
   }
-  
+
   // Filtrar ciudades por el estado seleccionado
   this.filteredCiudades2 = this.ciudad.filter(ciudad => ciudad.cestado === estado.cestado);
 
@@ -236,7 +236,7 @@ selectCiudadTI(ciudad: Ciudad): void {
   this.formPlanSalud.get('ciudad_titular')?.setValue(ciudad.cciudad);
   this.formPlanSalud.get('ciudad_titular')?.markAsTouched();
   this.filteredCiudades2 = [];
-  
+
   const inputElement = document.querySelector('input[formControlName="ciudad_titular"]') as HTMLInputElement;
   if (inputElement) {
     inputElement.value = ciudad.xdescripcion_l;
@@ -268,7 +268,7 @@ getCiudadDescripcionTI(): string {
 
     return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
   }
-  
+
   private generateForm() {
     const nextPolizaNumber = this.getNextPolizaNumber();
     this.formPlanSalud = this.fb.group({
@@ -386,7 +386,7 @@ getCiudadDescripcionTI(): string {
           const estado = this.estados.find(e => e.cestado.toString() === value);
           if (estado) {
             this.formPlanSalud.get('estado_titular')!.setValue(estado.cestado.toString(), { emitEvent: false });
-    
+
             // Actualizar el valor del input con la descripción del estado
             const inputElement = document.querySelector('input[formControlName="estado_titular"]') as HTMLInputElement;
             if (inputElement) {
@@ -442,7 +442,7 @@ getCiudadDescripcionTI(): string {
     this.getNumberPoliza()
     setTimeout(() => {
       this.updateNumberPoliza()
-    }, 5000);  
+    }, 5000);
   }
 
   private async getNumberPoliza() {
@@ -462,12 +462,12 @@ private async updateNumberPoliza() {
 
         // Enviar el nuevo número al backend
         const response: any = await (await this.polziaService.updateNumber(datos)).toPromise();
-        
+
         // Actualizar el número local después de la respuesta
         this.numeroObtenido = newNumber;
         this.formPlanSalud.get('poliza')?.setValue(this.numeroObtenido)
         localStorage.setItem('numero',JSON.stringify(this.numeroObtenido));
-        
+
     } catch (error) {
         console.error('Error updating number:', error);
     }
@@ -555,82 +555,87 @@ private storageData() {
       duration:2000,
       position:'top',
       color: color
-    }) 
+    })
     await toast.present()
   }
   public async Submit() {
     this.showLoading = true;
 
     if (this.formPlanSalud.valid) {
-        try {
-            const response = await (await this.polziaService.emisionMundial(this.formPlanSalud.value)).toPromise();
-            
-            if (response.status === true) {
-              const cnpoliza = response.data.cnpoliza;
-              localStorage.setItem('cnpoliza', JSON.stringify(cnpoliza));
-              const urlpoliza = response.data.urlpoliza;
-              const plan = this.descripcion
-              const fecha_inicio =  this.getCurrentDate()
-              const numeroPoliza = this.formPlanSalud.get('poliza')?.value;
-              const fechaVencimiento = this.sumarUnAno()
+      localStorage.setItem('poliza_data', JSON.stringify(this.formPlanSalud.value))
+      setTimeout(() => {
+        this.toastMessage('Datos Enviados perfectamente 😁, en breve será redirigido', 'success');
+        this.navCtrl.navigateRoot('1d4c5e7b3f9a8e2a6b0d9f3c7a1b4e8');
+      }, 2000);
+        // try {
+        //     const response = await (await this.polziaService.emisionMundial(this.formPlanSalud.value)).toPromise();
 
-              await this.emailSend({
-                  correo_titular: this.formPlanSalud.get('correo_titular')?.value,
-                  poliza: cnpoliza,
-                  fecha_emision: this.formPlanSalud.get('fecha_emision')?.value,
-                  nombre_titular: this.formPlanSalud.get('nombre_titular')?.value,
-                  fecha_cobro: plan,
-                  urlpoliza: urlpoliza,
-                  fecha_inicio: fecha_inicio,
-                  numero_Poliza: numeroPoliza,
-                  fecha_vencimiento:fechaVencimiento
-              });
+        //     if (response.status === true) {
+        //       const cnpoliza = response.data.cnpoliza;
+        //       localStorage.setItem('cnpoliza', JSON.stringify(cnpoliza));
+        //       const urlpoliza = response.data.urlpoliza;
+        //       const plan = this.descripcion
+        //       const fecha_inicio =  this.getCurrentDate()
+        //       const numeroPoliza = this.formPlanSalud.get('poliza')?.value;
+        //       const fechaVencimiento = this.sumarUnAno()
 
-              setTimeout(() => {
-                this.savePoliza({
-                  fecha_emision: this.getCurrentDate(),
-                  fecha_expiracion: this.sumarUnAno(),
-                  estado_poliza: 'PENDIENTE',
-                  documento_poliza: urlpoliza,
-                  email_usuario: this.email,
-                  coberturas:{                          
-                  Cobertura_Total: "1000",
-                  },
-                  plan: 'Gastos funerarios',
-                  monto: '9',
-                  titular: this.formPlanSalud.get('nombre_titular')?.value,
-                  aseguradora: 'La mundial de Seguros',
-                  numero_poliza:cnpoliza,
-                  titular_apellido:this.formPlanSalud.get('apellido_tomador')?.value
-                })
-              }, 1000);
+        //       await this.emailSend({
+        //           correo_titular: this.formPlanSalud.get('correo_titular')?.value,
+        //           poliza: cnpoliza,
+        //           fecha_emision: this.formPlanSalud.get('fecha_emision')?.value,
+        //           nombre_titular: this.formPlanSalud.get('nombre_titular')?.value,
+        //           fecha_cobro: plan,
+        //           urlpoliza: urlpoliza,
+        //           fecha_inicio: fecha_inicio,
+        //           numero_Poliza: numeroPoliza,
+        //           fecha_vencimiento:fechaVencimiento
+        //       });
+
+        //       setTimeout(() => {
+        //         this.savePoliza({
+        //           fecha_emision: this.getCurrentDate(),
+        //           fecha_expiracion: this.sumarUnAno(),
+        //           estado_poliza: 'PENDIENTE',
+        //           documento_poliza: urlpoliza,
+        //           email_usuario: this.email,
+        //           coberturas:{
+        //           Cobertura_Total: "1000",
+        //           },
+        //           plan: 'Gastos funerarios',
+        //           monto: '9',
+        //           titular: this.formPlanSalud.get('nombre_titular')?.value,
+        //           aseguradora: 'La mundial de Seguros',
+        //           numero_poliza:cnpoliza,
+        //           titular_apellido:this.formPlanSalud.get('apellido_tomador')?.value
+        //         })
+        //       }, 1000);
 
 
 
-              setTimeout(() => {
-                this.toastMessage('Datos Enviados perfectamente 😁, en breve será redirigido', 'success');
-                this.navCtrl.navigateRoot('1d4c5e7b3f9a8e2a6b0d9f3c7a1b4e8');
-              }, 2000);
-            } else {
-              if (response.message === "Se ha detectado la existencia de una póliza vigente con el mismo asegurado y ramo.") {
-                this.toastMessage('Estimado usuario la póliza ya se encuentra registrada 😰.', 'danger');
-              }
-              this.showLoading = false;
-            }
-        } catch (err) {
-            if (err instanceof HttpErrorResponse) {
-              if (err.status === 500  && err.error.message === "Se ha detectado la existencia de una póliza vigente con el mismo asegurado y ramo.") {
-                this.toastMessage('Estimado usuario la póliza ya se encuentra registrada 😰, por favor intente de nuevo', 'danger');
-              } else 
-              if(err.status === 500  && err.error.message === "El asegurado/titular no cumple con los criterios de edad para este plan. (Min: 0  , Max: 70 ).")
-              {
-                this.toastMessage('El asegurado/titular no cumple con los criterios de edad para este plan. (Min: 0  , Max: 70 )','warning')
-              }
-            }
-            this.showLoading = false;
-        } finally {
-            this.showLoading = false;
-        }
+        //       setTimeout(() => {
+        //         this.toastMessage('Datos Enviados perfectamente 😁, en breve será redirigido', 'success');
+        //         this.navCtrl.navigateRoot('1d4c5e7b3f9a8e2a6b0d9f3c7a1b4e8');
+        //       }, 2000);
+        //     } else {
+        //       if (response.message === "Se ha detectado la existencia de una póliza vigente con el mismo asegurado y ramo.") {
+        //         this.toastMessage('Estimado usuario la póliza ya se encuentra registrada 😰.', 'danger');
+        //       }
+        //       this.showLoading = false;
+        //     }
+        // } catch (err) {
+        //     if (err instanceof HttpErrorResponse) {
+        //       if (err.status === 500  && err.error.message === "Se ha detectado la existencia de una póliza vigente con el mismo asegurado y ramo.") {
+        //         this.toastMessage('Estimado usuario la póliza ya se encuentra registrada 😰, por favor intente de nuevo', 'danger');
+        //       } else
+        //       if(err.status === 500  && err.error.message === "El asegurado/titular no cumple con los criterios de edad para este plan. (Min: 0  , Max: 70 ).")
+        //       {
+        //         this.toastMessage('El asegurado/titular no cumple con los criterios de edad para este plan. (Min: 0  , Max: 70 )','warning')
+        //       }
+        //     }
+        //     this.showLoading = false;
+        // } finally {
+        //     this.showLoading = false;
+        // }
     } else {
       this.formPlanSalud.markAllAsTouched();
         this.toastMessage('Completa todos los campos 😰', 'danger');
