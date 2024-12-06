@@ -142,8 +142,8 @@
 
 
 
-          <details>
-            <summary>Datos del titular</summary>
+          <div>
+            <h2>Datos del titular</h2>
             <div class="form-section">
               <div class="row">
                 <select class="input-field" interface="action-sheet" formControlName="cedula_titular" [attr.disabled]="isTitularDisabled ? true : null">
@@ -155,7 +155,6 @@
                 </select>
                 <input type="text" class="input-field" placeholder="RIF" formControlName="rif_titular" [attr.disabled]="isTitularDisabled ? true : null">
               </div>
-  zz
 
                 <input type="text" class="input-field" placeholder="Nombre" formControlName="nombre_titular" [attr.disabled]="isTitularDisabled ? true : null">
                 <input type="text" class="input-field" placeholder="Apellido" formControlName="apellido_titular" [attr.disabled]="isTitularDisabled ? true : null">
@@ -229,7 +228,7 @@
 
 
 
-          </details>
+          </div>
 
           <div class="informacion-details">
             <h4>Términos y condiciones </h4>
@@ -255,7 +254,7 @@
 
           <div class="button-group">
             <button type="button"  class="button button-return" (click)="routingNavigate()">Volver</button>
-            <button type="submit" [disabled]="!formPlanSalud.get('dec_term_y_cod')?.value || correoNoCoincide" class="button button-buy">Comprar</button>
+            <button type="submit" [disabled]="!formPlanSalud.get('dec_term_y_cod')?.value || correoNoCoincide" class="button button-buy">Siguiente</button>
           </div>
         </div>
         </form>

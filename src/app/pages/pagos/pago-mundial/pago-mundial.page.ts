@@ -9,11 +9,6 @@ import { ToastController, NavController } from '@ionic/angular';
 // import { log } from 'console';
 import { bankOption, PLan } from 'src/app/interface/syPagoBank';
 import { SypagoService } from 'src/app/services/sypago.service';
-import { jwtDecode } from 'jwt-decode';
-
-import { PolizaService } from 'src/app/services/poliza.service';
-import { InserDataService } from 'src/app/services/inser-data.service';
-import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-pago-mundial',
@@ -45,18 +40,6 @@ export class PagoMundialPage implements OnInit {
   payt: any;
   pago: any;
 
-  // EMISION POLIZA
-  descripcion: string = '';
-  formPolizaData: any;
-  email: any;
-  private navCtrl = inject(NavController);
-  private polizaService = inject(PolizaService);
-  private insertData = inject(InserDataService);
-
-  constructor() {
-    this.authSyPago(), this.generateForm();
-  }
-
   ngOnInit() {
     this.localStorage();
     const data: any = localStorage.getItem('Descripcion_products');
@@ -71,18 +54,6 @@ export class PagoMundialPage implements OnInit {
       this.BankOption();
     }, 4000);
 
-    //EMISION POLIZA
-    this.descripcion = JSON.parse(data);
-
-    this.formPolizaData = JSON.parse(
-      localStorage.getItem('poliza_data') || '[]'
-    );
-
-    const emailInfo: any = JSON.parse(
-      localStorage.getItem('auth-session') || '[]'
-    );
-    const emailData: any = jwtDecode(emailInfo.infoUser);
-    this.email = emailData.email;
   }
 
   togglePaymentFields(event: any): void {
@@ -163,34 +134,6 @@ export class PagoMundialPage implements OnInit {
     this.isModalVisible = false;
   }
 
-  //EMISION POLIZA
-  private getCurrentDate(): string {
-    const today = new Date();
-
-    const year = today.getFullYear();
-    const month = String(today.getMonth() + 1).padStart(2, '0');
-    const day = String(today.getDate()).padStart(2, '0');
-
-    const hours = String(today.getHours()).padStart(2, '0');
-    const minutes = String(today.getMinutes()).padStart(2, '0');
-    const seconds = String(today.getSeconds()).padStart(2, '0');
-
-    return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
-  }
-  sumarUnAno(): Date {
-    const fechaActual = new Date();
-
-    const nuevaFecha = new Date(fechaActual);
-    nuevaFecha.setFullYear(fechaActual.getFullYear() + 1);
-
-    return nuevaFecha;
-  }
-  private async emailSend(data: any) {
-    localStorage.setItem('Correo_Poliza', JSON.stringify(data));
-  }
-  private async savePoliza(data: any) {
-    await (await this.insertData.savePoliza(data)).toPromise();
-  }
 
   public async submit() {
     this.showLoading = true;
@@ -221,96 +164,6 @@ export class PagoMundialPage implements OnInit {
         await this.authService.realizarPago(this.paymentData);
         this.isModalVisible = true;
 
-        // try {
-        //   const response = await (
-        //     await this.polizaService.emisionMundial(this.formPolizaData.value)
-        //   ).toPromise();
-
-        //   if (response.status === true) {
-        //     const cnpoliza = response.data.cnpoliza;
-        //     localStorage.setItem('cnpoliza', JSON.stringify(cnpoliza));
-        //     const urlpoliza = response.data.urlpoliza;
-        //     const plan = this.descripcion;
-        //     const fecha_inicio = this.getCurrentDate();
-        //     const numeroPoliza = this.formPolizaData.poliza;
-        //     const fechaVencimiento = this.sumarUnAno();
-
-        //     await this.emailSend({
-        //       correo_titular: this.formPolizaData.correo_titular,
-        //       poliza: cnpoliza,
-        //       fecha_emision: this.formPolizaData.fecha_emision,
-        //       nombre_titular: this.formPolizaData.nombre_titular,
-        //       fecha_cobro: plan,
-        //       urlpoliza: urlpoliza,
-        //       fecha_inicio: fecha_inicio,
-        //       numero_Poliza: numeroPoliza,
-        //       fecha_vencimiento: fechaVencimiento,
-        //     });
-
-        //     setTimeout(() => {
-        //       this.savePoliza({
-        //         fecha_emision: this.getCurrentDate(),
-        //         fecha_expiracion: this.sumarUnAno(),
-        //         estado_poliza: 'PENDIENTE',
-        //         documento_poliza: urlpoliza,
-        //         email_usuario: this.email,
-        //         coberturas: {
-        //           Cobertura_Total: '1000',
-        //         },
-        //         plan: 'Gastos funerarios',
-        //         monto: '9',
-        //         titular: this.formPolizaData.nombre_titular,
-        //         aseguradora: 'La mundial de Seguros',
-        //         numero_poliza: cnpoliza,
-        //         titular_apellido: this.formPolizaData.apellido_tomador,
-        //       });
-        //     }, 1000);
-
-        //     setTimeout(() => {
-        //       this.toastMessage(
-        //         'Datos Enviados perfectamente 😁, en breve será redirigido',
-        //         'success'
-        //       );
-        //       this.navCtrl.navigateRoot('1d4c5e7b3f9a8e2a6b0d9f3c7a1b4e8');
-        //     }, 2000);
-        //   } else {
-        //     if (
-        //       response.message ===
-        //       'Se ha detectado la existencia de una póliza vigente con el mismo asegurado y ramo.'
-        //     ) {
-        //       this.toastMessage(
-        //         'Estimado usuario la póliza ya se encuentra registrada 😰.',
-        //         'danger'
-        //       );
-        //     }
-        //     this.showLoading = false;
-        //   }
-        // } catch (err) {
-        //   if (err instanceof HttpErrorResponse) {
-        //     if (
-        //       err.status === 500 &&
-        //       err.error.message ===
-        //         'Se ha detectado la existencia de una póliza vigente con el mismo asegurado y ramo.'
-        //     ) {
-        //       this.toastMessage(
-        //         'Estimado usuario la póliza ya se encuentra registrada 😰, por favor intente de nuevo',
-        //         'danger'
-        //       );
-        //     } else if (
-        //       err.status === 500 &&
-        //       err.error.message ===
-        //         'El asegurado/titular no cumple con los criterios de edad para este plan. (Min: 0  , Max: 70 ).'
-        //     ) {
-        //       this.toastMessage(
-        //         'El asegurado/titular no cumple con los criterios de edad para este plan. (Min: 0  , Max: 70 )',
-        //         'warning'
-        //       );
-        //     }
-        //   }
-        //   this.showLoading = false;
-        // } finally {
-        //   this.showLoading = false;
-        // }
       } catch (error) {
         console.error('Error al procesar el OTP:', error);
         this.toastMessage(

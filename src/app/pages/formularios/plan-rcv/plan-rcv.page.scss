@@ -61,6 +61,9 @@ h2, summary{
     background-color: #f9f9f9;
     transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
+.input-field:disabled {
+  background-color: #e9e9e9;
+}
 
 .input-small {
     width: 45%;
@@ -115,7 +118,7 @@ h2, summary{
     padding: 10px;
     cursor: pointer;
   }
-  
+
   .autocomplete-list li:hover {
     background-color: #f0f0f0;
   }
@@ -204,7 +207,7 @@ footer a:hover {
     border: 1px solid red;
     background-color: #fdd;
   }
-  
+
 
   .error-label {
     display: block; /* Hace que el label ocupe una línea completa */
@@ -217,14 +220,14 @@ footer a:hover {
   .informacion-details {
     background-color: #f9f9f9;
   }
-  
+
   h4 {
     font-weight: bold;
     font-size: 13px;
     color: #949191;
     text-align: left;
   }
-  
+
   .checkbox-label1{
     font-size: 13px;
     margin-left: 5px;
@@ -312,7 +315,7 @@ footer a:hover {
     flex-direction: column;
     margin: 20px;
   }
-  
+
   .checkbox-label {
     display: flex;
     align-items: flex-start; /* Alinea el contenido al inicio verticalmente */
@@ -321,11 +324,11 @@ footer a:hover {
     margin-bottom: 10px;
     user-select: none; /* Evitar selección de texto accidental */
   }
-  
+
   .checkbox-label input {
     display: none;
   }
-  
+
   .custom-checkbox {
     width: 60px;
     height: 20px;
@@ -336,7 +339,7 @@ footer a:hover {
     margin-right: 10px;
     transition: background-color 0.3s, border-color 0.3s;
   }
-  
+
   .custom-checkbox::after {
     content: '';
     position: absolute;
@@ -362,44 +365,43 @@ footer a:hover {
     height: 90px;
     transition: border-color 0.3s, box-shadow 0.3s;
   }
-  
+
   .styled-textarea:focus {
     outline: none;
     border-color: #0056b3;
     box-shadow: 0 0 8px rgba(0, 123, 255, 0.5);
   }
-  
-  
+
+
   .checkbox-label input:checked + .custom-checkbox {
     background-color: #007bff;
     border-color: #007bff;
   }
-  
+
   .checkbox-label input:checked + .custom-checkbox::after {
     opacity: 1;
   }
-  
+
   .checkbox-label:hover .custom-checkbox {
     border-color: #0056b3;
   }
-  
+
   .checkbox-text {
     font-size: 10px;
     line-height: 1.4;
     color: #918f8f;
     text-align: left; /* Alinear el texto a la izquierda */
   }
-  
+
   .checkbox-text a {
     color: #1a1a1b;
     text-decoration: underline;
   }
-  
+
   .checkbox-text a:hover {
     color: #0056b3;
   }
-  
 
-  
-  
-  
+
+
+
